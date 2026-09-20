@@ -77,11 +77,11 @@ The core study is closed. No additional repetitions are required under the defin
 
 ## Canonical artifacts
 
-- [Canonical JSON results](/Volumes/Research/tests/mm-8b-benchmark/processed_results/mac_scaling_final_results_v1.json)
-- [Compact CSV summary](/Volumes/Research/tests/mm-8b-benchmark/processed_results/mac_scaling_final_summary.csv)
-- [Final manifest](/Volumes/Research/tests/mm-8b-benchmark/manifests/mac_scaling_final_manifest_v1.json)
-- [V1→V2 methodology note](/Volumes/Research/tests/mm-8b-benchmark/reports/METHODOLOGY_V1_TO_V2_CLOSEOUT_NOTE.md)
-- [Final status README](/Volumes/Research/tests/mm-8b-benchmark/README_FINAL_STATUS.md)
-- [Interim synthesis, preserved and superseded](/Volumes/Research/tests/mm-8b-benchmark/reports/MAC_METAL_SCALING_INTERIM_ANALYSIS_V1.md)
+- [Canonical JSON results](../results/canonical-results-v1.json)
+- [Compact CSV summary](../results/pair-summary.csv)
+- [Final manifest](../manifests/model-run-manifest.json)
+- [V1→V2 methodology note](../methodology/v1-to-v2.md)
+- [Final status README](../LOCAL_STATUS.md)
+- [Interim synthesis, preserved and superseded](../reports/final-scaling-study.md)
 
 Raw evidence remains under `raw_runs/stage1-v2-mac-metal/` and was not rewritten.
