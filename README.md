@@ -19,7 +19,7 @@ These are narrow observations about these model artifacts, tasks, and execution 
 
 ## What changed methodologically
 
-The work began as a continuation of the earlier [3B/4B benchmark](https://github.com/MAJORminorStudio/4b-agent-model-benchmark). An audit found that the original V1 scorer could reward proxy behavior such as tool activity without sufficiently establishing achieved outcomes. An outcome-first V2 scorer was frozen before the controlled cohort. The ThinkPad/Vulkan environment also failed the frozen memory qualification for Qwen3 8B. A byte-identical Qwen3 4B bridge then showed material behavioral divergence between ThinkPad/Vulkan and Mac/Metal. Historical Vulkan results are therefore contextual only; the primary scaling estimate uses same-environment Mac/Metal pairs.
+The work began as a continuation of the earlier [3B/4B benchmark](https://github.com/majorminorlabs/research-4b-agent-models). An audit found that the original V1 scorer could reward proxy behavior such as tool activity without sufficiently establishing achieved outcomes. An outcome-first V2 scorer was frozen before the controlled cohort. The ThinkPad/Vulkan environment also failed the frozen memory qualification for Qwen3 8B. A byte-identical Qwen3 4B bridge then showed material behavioral divergence between ThinkPad/Vulkan and Mac/Metal. Historical Vulkan results are therefore contextual only; the primary scaling estimate uses same-environment Mac/Metal pairs.
 
 ## Reproduce or inspect
 
