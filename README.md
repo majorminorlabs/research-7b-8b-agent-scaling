@@ -2,6 +2,8 @@
 
 This repository publishes the completed, frozen evidence package for a controlled agentic benchmark study. The canonical source was local commit `6e80566ef9487f3b7b592eee621d3bc27af52108` of the private research workspace; this public repository is a curated release derived from that source.
 
+Read the [MAJOR//minor write-up](https://majorminor.xyz/notebook/small-local-models-agent-tasks), which covers the earlier 3B/4B benchmark and this sibling-scaling follow-up.
+
 ## Result in one sentence
 
 Across four controlled Mac/Metal sibling comparisons, moving from approximately 3B/4B to 7B/8B did not produce a positive scaling signal on this agentic benchmark.
