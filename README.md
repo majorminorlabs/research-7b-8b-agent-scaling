@@ -48,3 +48,7 @@ The benchmark measures these seven simulated agentic tasks, not general model in
 ## Citation
 
 MAJOR//minor, *3B/4B → 7B/8B sibling-scaling study*, canonical source commit `6e80566ef9487f3b7b592eee621d3bc27af52108`.
+
+Tier 1 evidence added after the tagged release (2026-10-20): [source, protocols, historical audits and small run records](supplements/tier1-20261020/README.md).
+
+Plans, handoffs and drafts live in _private/ and are never published.
