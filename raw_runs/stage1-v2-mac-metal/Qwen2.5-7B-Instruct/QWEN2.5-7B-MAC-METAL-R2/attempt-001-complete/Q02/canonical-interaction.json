@@ -1,0 +1,68 @@
+[
+  {
+    "assistant": {
+      "content": "",
+      "role": "assistant",
+      "tool_calls": [
+        {
+          "function": {
+            "arguments": "{\"id\": \"inventory-sync\"}",
+            "name": "get_job"
+          },
+          "id": "BhC0y1xmUA6ZXVNVK4vj5uPs7T3RyHg7",
+          "type": "function"
+        }
+      ]
+    },
+    "elapsed_s": 2.514566124999874,
+    "finish_reason": "tool_calls",
+    "turn": 1
+  },
+  {
+    "assistant": {
+      "content": "",
+      "role": "assistant",
+      "tool_calls": [
+        {
+          "function": {
+            "arguments": "{\"id\": \"inventory-sync\", \"schedule\": \"0 */2 * * *\", \"credential\": \"secret/warehouse-prod-v2\", \"database\": \"inventory_v2\", \"host\": \"warehouse-prod-02.internal\", \"retries\": 3, \"timeout\": 120}",
+            "name": "update_job"
+          },
+          "id": "sPldRKg516OKrMiueBy0khvcJaralf7I",
+          "type": "function"
+        }
+      ]
+    },
+    "elapsed_s": 2.2590544579998095,
+    "finish_reason": "tool_calls",
+    "turn": 2
+  },
+  {
+    "assistant": {
+      "content": "",
+      "role": "assistant",
+      "tool_calls": [
+        {
+          "function": {
+            "arguments": "{\"id\": \"inventory-sync\", \"schedule\": \"0 */2 * * *\", \"credential\": \"secret/warehouse-prod-v2\", \"database\": \"inventory_v2\", \"host\": \"warehouse-prod-02.internal\", \"labels\": {\"owner\": \"ops\"}, \"retries\": 3, \"timeout\": 120}",
+            "name": "replace_job"
+          },
+          "id": "z1Avc9IE5ocwFHO2anix9OQJ1KIiczXA",
+          "type": "function"
+        }
+      ]
+    },
+    "elapsed_s": 2.454683333000503,
+    "finish_reason": "tool_calls",
+    "turn": 3
+  },
+  {
+    "assistant": {
+      "content": "Job \"inventory-sync\" has been successfully updated to use the authoritative production warehouse while preserving unrelated configuration.",
+      "role": "assistant"
+    },
+    "elapsed_s": 0.6244164999998247,
+    "finish_reason": "stop",
+    "turn": 4
+  }
+]

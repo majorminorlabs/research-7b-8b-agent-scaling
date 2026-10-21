@@ -1,0 +1,3122 @@
+[
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"check_service\", \"inspect_network\", \"inspect_file\", \"inspect_config\", \"process_report\", \"query_logs\"], \"initial_state\": {\"config\": \"analytics-db.internal:5432\", \"database\": \"healthy\", \"expected_header\": \"account_id\", \"header\": \"account-id\", \"input_file\": \"input.csv\", \"logs\": [\"parser: expected column account_id\", \"parser: received account-id\", \"fallback handler invoked\", \"reporter: dependency timeout\"], \"network\": \"healthy\", \"processed\": false}, \"objective\": \"Make the report generator successfully process the supplied dataset.\"}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen2.5-7B-Instruct",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool check_service. Use only when needed for the stated objective.",
+            "name": "check_service",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_network. Use only when needed for the stated objective.",
+            "name": "inspect_network",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_file. Use only when needed for the stated objective.",
+            "name": "inspect_file",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_config. Use only when needed for the stated objective.",
+            "name": "inspect_config",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool process_report. Use only when needed for the stated objective.",
+            "name": "process_report",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool query_logs. Use only when needed for the stated objective.",
+            "name": "query_logs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"config_key\": \"config\"}",
+                    "name": "inspect_config"
+                  },
+                  "id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789918042,
+        "id": "chatcmpl-UvUAQrbr1qOFn5APA2wy6RRgnOwRpFGm",
+        "model": "models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 59,
+          "predicted_ms": 522.634,
+          "predicted_n": 21,
+          "predicted_per_second": 38.267697853564826,
+          "predicted_per_token_ms": 26.131700000000002,
+          "prompt_ms": 1513.261,
+          "prompt_n": 564,
+          "prompt_per_second": 372.7050389853436,
+          "prompt_per_token_ms": 2.683086879432624
+        },
+        "usage": {
+          "completion_tokens": 21,
+          "prompt_tokens": 623,
+          "prompt_tokens_details": {
+            "cached_tokens": 59
+          },
+          "total_tokens": 644
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"inspect_config\",\"arguments\":\"{\\\"config_key\\\": \\\"config\\\"}\"},\"id\":\"TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3\"}]}}],\"created\":1789918042,\"model\":\"models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":21,\"prompt_tokens\":623,\"total_tokens\":644,\"prompt_tokens_details\":{\"cached_tokens\":59}},\"id\":\"chatcmpl-UvUAQrbr1qOFn5APA2wy6RRgnOwRpFGm\",\"timings\":{\"cache_n\":59,\"prompt_n\":564,\"prompt_ms\":1513.261,\"prompt_per_token_ms\":2.683086879432624,\"prompt_per_second\":372.7050389853436,\"predicted_n\":21,\"predicted_ms\":522.634,\"predicted_per_token_ms\":26.131700000000002,\"predicted_per_second\":38.267697853564826}}",
+      "status": 200
+    },
+    "turn": 1
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"check_service\", \"inspect_network\", \"inspect_file\", \"inspect_config\", \"process_report\", \"query_logs\"], \"initial_state\": {\"config\": \"analytics-db.internal:5432\", \"database\": \"healthy\", \"expected_header\": \"account_id\", \"header\": \"account-id\", \"input_file\": \"input.csv\", \"logs\": [\"parser: expected column account_id\", \"parser: received account-id\", \"fallback handler invoked\", \"reporter: dependency timeout\"], \"network\": \"healthy\", \"processed\": false}, \"objective\": \"Make the report generator successfully process the supplied dataset.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"config\"}",
+                "name": "inspect_config"
+              },
+              "id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3"
+        }
+      ],
+      "model": "Qwen2.5-7B-Instruct",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool check_service. Use only when needed for the stated objective.",
+            "name": "check_service",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_network. Use only when needed for the stated objective.",
+            "name": "inspect_network",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_file. Use only when needed for the stated objective.",
+            "name": "inspect_file",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_config. Use only when needed for the stated objective.",
+            "name": "inspect_config",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool process_report. Use only when needed for the stated objective.",
+            "name": "process_report",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool query_logs. Use only when needed for the stated objective.",
+            "name": "query_logs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"file_path\": \"input.csv\"}",
+                    "name": "inspect_file"
+                  },
+                  "id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789918043,
+        "id": "chatcmpl-U751S9Kk0v8mEkxw0sRfN5QXEs7dmwe2",
+        "model": "models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 643,
+          "predicted_ms": 515.784,
+          "predicted_n": 22,
+          "predicted_per_second": 40.714717788841845,
+          "predicted_per_token_ms": 24.56114285714286,
+          "prompt_ms": 111.662,
+          "prompt_n": 30,
+          "prompt_per_second": 268.6679443320019,
+          "prompt_per_token_ms": 3.722066666666667
+        },
+        "usage": {
+          "completion_tokens": 22,
+          "prompt_tokens": 673,
+          "prompt_tokens_details": {
+            "cached_tokens": 643
+          },
+          "total_tokens": 695
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"inspect_file\",\"arguments\":\"{\\\"file_path\\\": \\\"input.csv\\\"}\"},\"id\":\"2eYAlu46lkBl5CteEpTDIW98pQi8aBme\"}]}}],\"created\":1789918043,\"model\":\"models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":22,\"prompt_tokens\":673,\"total_tokens\":695,\"prompt_tokens_details\":{\"cached_tokens\":643}},\"id\":\"chatcmpl-U751S9Kk0v8mEkxw0sRfN5QXEs7dmwe2\",\"timings\":{\"cache_n\":643,\"prompt_n\":30,\"prompt_ms\":111.662,\"prompt_per_token_ms\":3.722066666666667,\"prompt_per_second\":268.6679443320019,\"predicted_n\":22,\"predicted_ms\":515.784,\"predicted_per_token_ms\":24.56114285714286,\"predicted_per_second\":40.714717788841845}}",
+      "status": 200
+    },
+    "turn": 2
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"check_service\", \"inspect_network\", \"inspect_file\", \"inspect_config\", \"process_report\", \"query_logs\"], \"initial_state\": {\"config\": \"analytics-db.internal:5432\", \"database\": \"healthy\", \"expected_header\": \"account_id\", \"header\": \"account-id\", \"input_file\": \"input.csv\", \"logs\": [\"parser: expected column account_id\", \"parser: received account-id\", \"fallback handler invoked\", \"reporter: dependency timeout\"], \"network\": \"healthy\", \"processed\": false}, \"objective\": \"Make the report generator successfully process the supplied dataset.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"config\"}",
+                "name": "inspect_config"
+              },
+              "id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"file_path\": \"input.csv\"}",
+                "name": "inspect_file"
+              },
+              "id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"expected\":\"account_id\",\"header\":\"account-id\"}",
+          "name": "inspect_file",
+          "role": "tool",
+          "tool_call_id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme"
+        }
+      ],
+      "model": "Qwen2.5-7B-Instruct",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool check_service. Use only when needed for the stated objective.",
+            "name": "check_service",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_network. Use only when needed for the stated objective.",
+            "name": "inspect_network",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_file. Use only when needed for the stated objective.",
+            "name": "inspect_file",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_config. Use only when needed for the stated objective.",
+            "name": "inspect_config",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool process_report. Use only when needed for the stated objective.",
+            "name": "process_report",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool query_logs. Use only when needed for the stated objective.",
+            "name": "query_logs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "query_logs"
+                  },
+                  "id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789918043,
+        "id": "chatcmpl-aAqI9u6tUptlJoJjiCE14avWzBz4Tylk",
+        "model": "models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 694,
+          "predicted_ms": 371.021,
+          "predicted_n": 16,
+          "predicted_per_second": 40.42897841362079,
+          "predicted_per_token_ms": 24.734733333333335,
+          "prompt_ms": 111.552,
+          "prompt_n": 29,
+          "prompt_per_second": 259.9684452094091,
+          "prompt_per_token_ms": 3.8466206896551727
+        },
+        "usage": {
+          "completion_tokens": 16,
+          "prompt_tokens": 723,
+          "prompt_tokens_details": {
+            "cached_tokens": 694
+          },
+          "total_tokens": 739
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"query_logs\",\"arguments\":\"{}\"},\"id\":\"eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv\"}]}}],\"created\":1789918043,\"model\":\"models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":16,\"prompt_tokens\":723,\"total_tokens\":739,\"prompt_tokens_details\":{\"cached_tokens\":694}},\"id\":\"chatcmpl-aAqI9u6tUptlJoJjiCE14avWzBz4Tylk\",\"timings\":{\"cache_n\":694,\"prompt_n\":29,\"prompt_ms\":111.552,\"prompt_per_token_ms\":3.8466206896551727,\"prompt_per_second\":259.9684452094091,\"predicted_n\":16,\"predicted_ms\":371.021,\"predicted_per_token_ms\":24.734733333333335,\"predicted_per_second\":40.42897841362079}}",
+      "status": 200
+    },
+    "turn": 3
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"check_service\", \"inspect_network\", \"inspect_file\", \"inspect_config\", \"process_report\", \"query_logs\"], \"initial_state\": {\"config\": \"analytics-db.internal:5432\", \"database\": \"healthy\", \"expected_header\": \"account_id\", \"header\": \"account-id\", \"input_file\": \"input.csv\", \"logs\": [\"parser: expected column account_id\", \"parser: received account-id\", \"fallback handler invoked\", \"reporter: dependency timeout\"], \"network\": \"healthy\", \"processed\": false}, \"objective\": \"Make the report generator successfully process the supplied dataset.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"config\"}",
+                "name": "inspect_config"
+              },
+              "id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"file_path\": \"input.csv\"}",
+                "name": "inspect_file"
+              },
+              "id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"expected\":\"account_id\",\"header\":\"account-id\"}",
+          "name": "inspect_file",
+          "role": "tool",
+          "tool_call_id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "query_logs"
+              },
+              "id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[\"parser: expected column account_id\",\"parser: received account-id\",\"fallback handler invoked\",\"reporter: dependency timeout\"]",
+          "name": "query_logs",
+          "role": "tool",
+          "tool_call_id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv"
+        }
+      ],
+      "model": "Qwen2.5-7B-Instruct",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool check_service. Use only when needed for the stated objective.",
+            "name": "check_service",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_network. Use only when needed for the stated objective.",
+            "name": "inspect_network",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_file. Use only when needed for the stated objective.",
+            "name": "inspect_file",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_config. Use only when needed for the stated objective.",
+            "name": "inspect_config",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool process_report. Use only when needed for the stated objective.",
+            "name": "process_report",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool query_logs. Use only when needed for the stated objective.",
+            "name": "query_logs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"service\": \"reporter\"}",
+                    "name": "check_service"
+                  },
+                  "id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789918044,
+        "id": "chatcmpl-Oj1yTg98p6xpuvoFgXXXhKCaKXvfTXu0",
+        "model": "models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 738,
+          "predicted_ms": 495.496,
+          "predicted_n": 21,
+          "predicted_per_second": 40.363595266157546,
+          "predicted_per_token_ms": 24.7748,
+          "prompt_ms": 187.771,
+          "prompt_n": 42,
+          "prompt_per_second": 223.67671259140124,
+          "prompt_per_token_ms": 4.470738095238095
+        },
+        "usage": {
+          "completion_tokens": 21,
+          "prompt_tokens": 780,
+          "prompt_tokens_details": {
+            "cached_tokens": 738
+          },
+          "total_tokens": 801
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"check_service\",\"arguments\":\"{\\\"service\\\": \\\"reporter\\\"}\"},\"id\":\"WOyUGP4SNUdspHnjj5DofXWTizjvEfk7\"}]}}],\"created\":1789918044,\"model\":\"models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":21,\"prompt_tokens\":780,\"total_tokens\":801,\"prompt_tokens_details\":{\"cached_tokens\":738}},\"id\":\"chatcmpl-Oj1yTg98p6xpuvoFgXXXhKCaKXvfTXu0\",\"timings\":{\"cache_n\":738,\"prompt_n\":42,\"prompt_ms\":187.771,\"prompt_per_token_ms\":4.470738095238095,\"prompt_per_second\":223.67671259140124,\"predicted_n\":21,\"predicted_ms\":495.496,\"predicted_per_token_ms\":24.7748,\"predicted_per_second\":40.363595266157546}}",
+      "status": 200
+    },
+    "turn": 4
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"check_service\", \"inspect_network\", \"inspect_file\", \"inspect_config\", \"process_report\", \"query_logs\"], \"initial_state\": {\"config\": \"analytics-db.internal:5432\", \"database\": \"healthy\", \"expected_header\": \"account_id\", \"header\": \"account-id\", \"input_file\": \"input.csv\", \"logs\": [\"parser: expected column account_id\", \"parser: received account-id\", \"fallback handler invoked\", \"reporter: dependency timeout\"], \"network\": \"healthy\", \"processed\": false}, \"objective\": \"Make the report generator successfully process the supplied dataset.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"config\"}",
+                "name": "inspect_config"
+              },
+              "id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"file_path\": \"input.csv\"}",
+                "name": "inspect_file"
+              },
+              "id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"expected\":\"account_id\",\"header\":\"account-id\"}",
+          "name": "inspect_file",
+          "role": "tool",
+          "tool_call_id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "query_logs"
+              },
+              "id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[\"parser: expected column account_id\",\"parser: received account-id\",\"fallback handler invoked\",\"reporter: dependency timeout\"]",
+          "name": "query_logs",
+          "role": "tool",
+          "tool_call_id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"service\": \"reporter\"}",
+                "name": "check_service"
+              },
+              "id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"database\":\"healthy\"}",
+          "name": "check_service",
+          "role": "tool",
+          "tool_call_id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7"
+        }
+      ],
+      "model": "Qwen2.5-7B-Instruct",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool check_service. Use only when needed for the stated objective.",
+            "name": "check_service",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_network. Use only when needed for the stated objective.",
+            "name": "inspect_network",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_file. Use only when needed for the stated objective.",
+            "name": "inspect_file",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_config. Use only when needed for the stated objective.",
+            "name": "inspect_config",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool process_report. Use only when needed for the stated objective.",
+            "name": "process_report",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool query_logs. Use only when needed for the stated objective.",
+            "name": "query_logs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"config_key\": \"database\"}",
+                    "name": "inspect_config"
+                  },
+                  "id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789918045,
+        "id": "chatcmpl-682hY5J6634faktDNNGOLic8JhFu3WwC",
+        "model": "models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 800,
+          "predicted_ms": 493.011,
+          "predicted_n": 21,
+          "predicted_per_second": 40.567046171383595,
+          "predicted_per_token_ms": 24.650550000000003,
+          "prompt_ms": 109.418,
+          "prompt_n": 23,
+          "prompt_per_second": 210.2030744484454,
+          "prompt_per_token_ms": 4.7573043478260875
+        },
+        "usage": {
+          "completion_tokens": 21,
+          "prompt_tokens": 823,
+          "prompt_tokens_details": {
+            "cached_tokens": 800
+          },
+          "total_tokens": 844
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"inspect_config\",\"arguments\":\"{\\\"config_key\\\": \\\"database\\\"}\"},\"id\":\"BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG\"}]}}],\"created\":1789918045,\"model\":\"models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":21,\"prompt_tokens\":823,\"total_tokens\":844,\"prompt_tokens_details\":{\"cached_tokens\":800}},\"id\":\"chatcmpl-682hY5J6634faktDNNGOLic8JhFu3WwC\",\"timings\":{\"cache_n\":800,\"prompt_n\":23,\"prompt_ms\":109.418,\"prompt_per_token_ms\":4.7573043478260875,\"prompt_per_second\":210.2030744484454,\"predicted_n\":21,\"predicted_ms\":493.011,\"predicted_per_token_ms\":24.650550000000003,\"predicted_per_second\":40.567046171383595}}",
+      "status": 200
+    },
+    "turn": 5
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"check_service\", \"inspect_network\", \"inspect_file\", \"inspect_config\", \"process_report\", \"query_logs\"], \"initial_state\": {\"config\": \"analytics-db.internal:5432\", \"database\": \"healthy\", \"expected_header\": \"account_id\", \"header\": \"account-id\", \"input_file\": \"input.csv\", \"logs\": [\"parser: expected column account_id\", \"parser: received account-id\", \"fallback handler invoked\", \"reporter: dependency timeout\"], \"network\": \"healthy\", \"processed\": false}, \"objective\": \"Make the report generator successfully process the supplied dataset.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"config\"}",
+                "name": "inspect_config"
+              },
+              "id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"file_path\": \"input.csv\"}",
+                "name": "inspect_file"
+              },
+              "id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"expected\":\"account_id\",\"header\":\"account-id\"}",
+          "name": "inspect_file",
+          "role": "tool",
+          "tool_call_id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "query_logs"
+              },
+              "id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[\"parser: expected column account_id\",\"parser: received account-id\",\"fallback handler invoked\",\"reporter: dependency timeout\"]",
+          "name": "query_logs",
+          "role": "tool",
+          "tool_call_id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"service\": \"reporter\"}",
+                "name": "check_service"
+              },
+              "id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"database\":\"healthy\"}",
+          "name": "check_service",
+          "role": "tool",
+          "tool_call_id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"database\"}",
+                "name": "inspect_config"
+              },
+              "id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG"
+        }
+      ],
+      "model": "Qwen2.5-7B-Instruct",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool check_service. Use only when needed for the stated objective.",
+            "name": "check_service",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_network. Use only when needed for the stated objective.",
+            "name": "inspect_network",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_file. Use only when needed for the stated objective.",
+            "name": "inspect_file",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_config. Use only when needed for the stated objective.",
+            "name": "inspect_config",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool process_report. Use only when needed for the stated objective.",
+            "name": "process_report",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool query_logs. Use only when needed for the stated objective.",
+            "name": "query_logs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"header_mapping\": {\"account_id\": \"account-id\"}, \"config\": \"analytics-db.internal:5432\"}",
+                    "name": "process_report"
+                  },
+                  "id": "C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789918046,
+        "id": "chatcmpl-A8TN2EovjuNwwDRoPe2lJszEpNMmMbt5",
+        "model": "models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 843,
+          "predicted_ms": 935.811,
+          "predicted_n": 39,
+          "predicted_per_second": 40.60648998569155,
+          "predicted_per_token_ms": 24.626605263157895,
+          "prompt_ms": 112.664,
+          "prompt_n": 30,
+          "prompt_per_second": 266.27849179862244,
+          "prompt_per_token_ms": 3.7554666666666665
+        },
+        "usage": {
+          "completion_tokens": 39,
+          "prompt_tokens": 873,
+          "prompt_tokens_details": {
+            "cached_tokens": 843
+          },
+          "total_tokens": 912
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"process_report\",\"arguments\":\"{\\\"header_mapping\\\": {\\\"account_id\\\": \\\"account-id\\\"}, \\\"config\\\": \\\"analytics-db.internal:5432\\\"}\"},\"id\":\"C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9\"}]}}],\"created\":1789918046,\"model\":\"models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":39,\"prompt_tokens\":873,\"total_tokens\":912,\"prompt_tokens_details\":{\"cached_tokens\":843}},\"id\":\"chatcmpl-A8TN2EovjuNwwDRoPe2lJszEpNMmMbt5\",\"timings\":{\"cache_n\":843,\"prompt_n\":30,\"prompt_ms\":112.664,\"prompt_per_token_ms\":3.7554666666666665,\"prompt_per_second\":266.27849179862244,\"predicted_n\":39,\"predicted_ms\":935.811,\"predicted_per_token_ms\":24.626605263157895,\"predicted_per_second\":40.60648998569155}}",
+      "status": 200
+    },
+    "turn": 6
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"check_service\", \"inspect_network\", \"inspect_file\", \"inspect_config\", \"process_report\", \"query_logs\"], \"initial_state\": {\"config\": \"analytics-db.internal:5432\", \"database\": \"healthy\", \"expected_header\": \"account_id\", \"header\": \"account-id\", \"input_file\": \"input.csv\", \"logs\": [\"parser: expected column account_id\", \"parser: received account-id\", \"fallback handler invoked\", \"reporter: dependency timeout\"], \"network\": \"healthy\", \"processed\": false}, \"objective\": \"Make the report generator successfully process the supplied dataset.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"config\"}",
+                "name": "inspect_config"
+              },
+              "id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"file_path\": \"input.csv\"}",
+                "name": "inspect_file"
+              },
+              "id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"expected\":\"account_id\",\"header\":\"account-id\"}",
+          "name": "inspect_file",
+          "role": "tool",
+          "tool_call_id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "query_logs"
+              },
+              "id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[\"parser: expected column account_id\",\"parser: received account-id\",\"fallback handler invoked\",\"reporter: dependency timeout\"]",
+          "name": "query_logs",
+          "role": "tool",
+          "tool_call_id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"service\": \"reporter\"}",
+                "name": "check_service"
+              },
+              "id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"database\":\"healthy\"}",
+          "name": "check_service",
+          "role": "tool",
+          "tool_call_id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"database\"}",
+                "name": "inspect_config"
+              },
+              "id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"header_mapping\": {\"account_id\": \"account-id\"}, \"config\": \"analytics-db.internal:5432\"}",
+                "name": "process_report"
+              },
+              "id": "C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"error\":\"connection timeout contacting analytics-db\"}",
+          "name": "process_report",
+          "role": "tool",
+          "tool_call_id": "C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9"
+        }
+      ],
+      "model": "Qwen2.5-7B-Instruct",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool check_service. Use only when needed for the stated objective.",
+            "name": "check_service",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_network. Use only when needed for the stated objective.",
+            "name": "inspect_network",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_file. Use only when needed for the stated objective.",
+            "name": "inspect_file",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_config. Use only when needed for the stated objective.",
+            "name": "inspect_config",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool process_report. Use only when needed for the stated objective.",
+            "name": "process_report",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool query_logs. Use only when needed for the stated objective.",
+            "name": "query_logs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"config_key\": \"network\"}",
+                    "name": "inspect_config"
+                  },
+                  "id": "bjCDAdlMibQqmlnEehCPSS9QtvxhssWA",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789918047,
+        "id": "chatcmpl-UPqEVqvb87UbxlOdcJOrMbR2KgVB7WdM",
+        "model": "models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 911,
+          "predicted_ms": 491.749,
+          "predicted_n": 21,
+          "predicted_per_second": 40.671155406518366,
+          "predicted_per_token_ms": 24.58745,
+          "prompt_ms": 112.683,
+          "prompt_n": 27,
+          "prompt_per_second": 239.61023401932852,
+          "prompt_per_token_ms": 4.173444444444445
+        },
+        "usage": {
+          "completion_tokens": 21,
+          "prompt_tokens": 938,
+          "prompt_tokens_details": {
+            "cached_tokens": 911
+          },
+          "total_tokens": 959
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"inspect_config\",\"arguments\":\"{\\\"config_key\\\": \\\"network\\\"}\"},\"id\":\"bjCDAdlMibQqmlnEehCPSS9QtvxhssWA\"}]}}],\"created\":1789918047,\"model\":\"models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":21,\"prompt_tokens\":938,\"total_tokens\":959,\"prompt_tokens_details\":{\"cached_tokens\":911}},\"id\":\"chatcmpl-UPqEVqvb87UbxlOdcJOrMbR2KgVB7WdM\",\"timings\":{\"cache_n\":911,\"prompt_n\":27,\"prompt_ms\":112.683,\"prompt_per_token_ms\":4.173444444444445,\"prompt_per_second\":239.61023401932852,\"predicted_n\":21,\"predicted_ms\":491.749,\"predicted_per_token_ms\":24.58745,\"predicted_per_second\":40.671155406518366}}",
+      "status": 200
+    },
+    "turn": 7
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"check_service\", \"inspect_network\", \"inspect_file\", \"inspect_config\", \"process_report\", \"query_logs\"], \"initial_state\": {\"config\": \"analytics-db.internal:5432\", \"database\": \"healthy\", \"expected_header\": \"account_id\", \"header\": \"account-id\", \"input_file\": \"input.csv\", \"logs\": [\"parser: expected column account_id\", \"parser: received account-id\", \"fallback handler invoked\", \"reporter: dependency timeout\"], \"network\": \"healthy\", \"processed\": false}, \"objective\": \"Make the report generator successfully process the supplied dataset.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"config\"}",
+                "name": "inspect_config"
+              },
+              "id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"file_path\": \"input.csv\"}",
+                "name": "inspect_file"
+              },
+              "id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"expected\":\"account_id\",\"header\":\"account-id\"}",
+          "name": "inspect_file",
+          "role": "tool",
+          "tool_call_id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "query_logs"
+              },
+              "id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[\"parser: expected column account_id\",\"parser: received account-id\",\"fallback handler invoked\",\"reporter: dependency timeout\"]",
+          "name": "query_logs",
+          "role": "tool",
+          "tool_call_id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"service\": \"reporter\"}",
+                "name": "check_service"
+              },
+              "id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"database\":\"healthy\"}",
+          "name": "check_service",
+          "role": "tool",
+          "tool_call_id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"database\"}",
+                "name": "inspect_config"
+              },
+              "id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"header_mapping\": {\"account_id\": \"account-id\"}, \"config\": \"analytics-db.internal:5432\"}",
+                "name": "process_report"
+              },
+              "id": "C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"error\":\"connection timeout contacting analytics-db\"}",
+          "name": "process_report",
+          "role": "tool",
+          "tool_call_id": "C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"network\"}",
+                "name": "inspect_config"
+              },
+              "id": "bjCDAdlMibQqmlnEehCPSS9QtvxhssWA",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "bjCDAdlMibQqmlnEehCPSS9QtvxhssWA"
+        }
+      ],
+      "model": "Qwen2.5-7B-Instruct",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool check_service. Use only when needed for the stated objective.",
+            "name": "check_service",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_network. Use only when needed for the stated objective.",
+            "name": "inspect_network",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_file. Use only when needed for the stated objective.",
+            "name": "inspect_file",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_config. Use only when needed for the stated objective.",
+            "name": "inspect_config",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool process_report. Use only when needed for the stated objective.",
+            "name": "process_report",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool query_logs. Use only when needed for the stated objective.",
+            "name": "query_logs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "inspect_network"
+                  },
+                  "id": "QZp09X2bamLIgH8mmTnmNLXx7nUbk7w7",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789918047,
+        "id": "chatcmpl-cHhw3i6uN9DjZQPsm4hoNCyyNmRIbT7N",
+        "model": "models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 958,
+          "predicted_ms": 370.616,
+          "predicted_n": 16,
+          "predicted_per_second": 40.47315820148078,
+          "predicted_per_token_ms": 24.707733333333334,
+          "prompt_ms": 113.143,
+          "prompt_n": 30,
+          "prompt_per_second": 265.1511803646713,
+          "prompt_per_token_ms": 3.7714333333333334
+        },
+        "usage": {
+          "completion_tokens": 16,
+          "prompt_tokens": 988,
+          "prompt_tokens_details": {
+            "cached_tokens": 958
+          },
+          "total_tokens": 1004
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"inspect_network\",\"arguments\":\"{}\"},\"id\":\"QZp09X2bamLIgH8mmTnmNLXx7nUbk7w7\"}]}}],\"created\":1789918047,\"model\":\"models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":16,\"prompt_tokens\":988,\"total_tokens\":1004,\"prompt_tokens_details\":{\"cached_tokens\":958}},\"id\":\"chatcmpl-cHhw3i6uN9DjZQPsm4hoNCyyNmRIbT7N\",\"timings\":{\"cache_n\":958,\"prompt_n\":30,\"prompt_ms\":113.143,\"prompt_per_token_ms\":3.7714333333333334,\"prompt_per_second\":265.1511803646713,\"predicted_n\":16,\"predicted_ms\":370.616,\"predicted_per_token_ms\":24.707733333333334,\"predicted_per_second\":40.47315820148078}}",
+      "status": 200
+    },
+    "turn": 8
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"check_service\", \"inspect_network\", \"inspect_file\", \"inspect_config\", \"process_report\", \"query_logs\"], \"initial_state\": {\"config\": \"analytics-db.internal:5432\", \"database\": \"healthy\", \"expected_header\": \"account_id\", \"header\": \"account-id\", \"input_file\": \"input.csv\", \"logs\": [\"parser: expected column account_id\", \"parser: received account-id\", \"fallback handler invoked\", \"reporter: dependency timeout\"], \"network\": \"healthy\", \"processed\": false}, \"objective\": \"Make the report generator successfully process the supplied dataset.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"config\"}",
+                "name": "inspect_config"
+              },
+              "id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"file_path\": \"input.csv\"}",
+                "name": "inspect_file"
+              },
+              "id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"expected\":\"account_id\",\"header\":\"account-id\"}",
+          "name": "inspect_file",
+          "role": "tool",
+          "tool_call_id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "query_logs"
+              },
+              "id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[\"parser: expected column account_id\",\"parser: received account-id\",\"fallback handler invoked\",\"reporter: dependency timeout\"]",
+          "name": "query_logs",
+          "role": "tool",
+          "tool_call_id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"service\": \"reporter\"}",
+                "name": "check_service"
+              },
+              "id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"database\":\"healthy\"}",
+          "name": "check_service",
+          "role": "tool",
+          "tool_call_id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"database\"}",
+                "name": "inspect_config"
+              },
+              "id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"header_mapping\": {\"account_id\": \"account-id\"}, \"config\": \"analytics-db.internal:5432\"}",
+                "name": "process_report"
+              },
+              "id": "C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"error\":\"connection timeout contacting analytics-db\"}",
+          "name": "process_report",
+          "role": "tool",
+          "tool_call_id": "C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"network\"}",
+                "name": "inspect_config"
+              },
+              "id": "bjCDAdlMibQqmlnEehCPSS9QtvxhssWA",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "bjCDAdlMibQqmlnEehCPSS9QtvxhssWA"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "inspect_network"
+              },
+              "id": "QZp09X2bamLIgH8mmTnmNLXx7nUbk7w7",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"network\":\"healthy\"}",
+          "name": "inspect_network",
+          "role": "tool",
+          "tool_call_id": "QZp09X2bamLIgH8mmTnmNLXx7nUbk7w7"
+        }
+      ],
+      "model": "Qwen2.5-7B-Instruct",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool check_service. Use only when needed for the stated objective.",
+            "name": "check_service",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_network. Use only when needed for the stated objective.",
+            "name": "inspect_network",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_file. Use only when needed for the stated objective.",
+            "name": "inspect_file",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_config. Use only when needed for the stated objective.",
+            "name": "inspect_config",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool process_report. Use only when needed for the stated objective.",
+            "name": "process_report",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool query_logs. Use only when needed for the stated objective.",
+            "name": "query_logs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"config_key\": \"logs\"}",
+                    "name": "inspect_config"
+                  },
+                  "id": "Dvps1rFlT1p6WxyUz0uMU31mSIqLFBub",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789918048,
+        "id": "chatcmpl-n9RyxYqWtYRzgYNaAUOn4kPIu6qpW57P",
+        "model": "models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 1003,
+          "predicted_ms": 493.617,
+          "predicted_n": 21,
+          "predicted_per_second": 40.517243125743235,
+          "predicted_per_token_ms": 24.68085,
+          "prompt_ms": 110.94,
+          "prompt_n": 23,
+          "prompt_per_second": 207.31927167838472,
+          "prompt_per_token_ms": 4.823478260869565
+        },
+        "usage": {
+          "completion_tokens": 21,
+          "prompt_tokens": 1026,
+          "prompt_tokens_details": {
+            "cached_tokens": 1003
+          },
+          "total_tokens": 1047
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"inspect_config\",\"arguments\":\"{\\\"config_key\\\": \\\"logs\\\"}\"},\"id\":\"Dvps1rFlT1p6WxyUz0uMU31mSIqLFBub\"}]}}],\"created\":1789918048,\"model\":\"models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":21,\"prompt_tokens\":1026,\"total_tokens\":1047,\"prompt_tokens_details\":{\"cached_tokens\":1003}},\"id\":\"chatcmpl-n9RyxYqWtYRzgYNaAUOn4kPIu6qpW57P\",\"timings\":{\"cache_n\":1003,\"prompt_n\":23,\"prompt_ms\":110.94,\"prompt_per_token_ms\":4.823478260869565,\"prompt_per_second\":207.31927167838472,\"predicted_n\":21,\"predicted_ms\":493.617,\"predicted_per_token_ms\":24.68085,\"predicted_per_second\":40.517243125743235}}",
+      "status": 200
+    },
+    "turn": 9
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"check_service\", \"inspect_network\", \"inspect_file\", \"inspect_config\", \"process_report\", \"query_logs\"], \"initial_state\": {\"config\": \"analytics-db.internal:5432\", \"database\": \"healthy\", \"expected_header\": \"account_id\", \"header\": \"account-id\", \"input_file\": \"input.csv\", \"logs\": [\"parser: expected column account_id\", \"parser: received account-id\", \"fallback handler invoked\", \"reporter: dependency timeout\"], \"network\": \"healthy\", \"processed\": false}, \"objective\": \"Make the report generator successfully process the supplied dataset.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"config\"}",
+                "name": "inspect_config"
+              },
+              "id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"file_path\": \"input.csv\"}",
+                "name": "inspect_file"
+              },
+              "id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"expected\":\"account_id\",\"header\":\"account-id\"}",
+          "name": "inspect_file",
+          "role": "tool",
+          "tool_call_id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "query_logs"
+              },
+              "id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[\"parser: expected column account_id\",\"parser: received account-id\",\"fallback handler invoked\",\"reporter: dependency timeout\"]",
+          "name": "query_logs",
+          "role": "tool",
+          "tool_call_id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"service\": \"reporter\"}",
+                "name": "check_service"
+              },
+              "id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"database\":\"healthy\"}",
+          "name": "check_service",
+          "role": "tool",
+          "tool_call_id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"database\"}",
+                "name": "inspect_config"
+              },
+              "id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"header_mapping\": {\"account_id\": \"account-id\"}, \"config\": \"analytics-db.internal:5432\"}",
+                "name": "process_report"
+              },
+              "id": "C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"error\":\"connection timeout contacting analytics-db\"}",
+          "name": "process_report",
+          "role": "tool",
+          "tool_call_id": "C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"network\"}",
+                "name": "inspect_config"
+              },
+              "id": "bjCDAdlMibQqmlnEehCPSS9QtvxhssWA",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "bjCDAdlMibQqmlnEehCPSS9QtvxhssWA"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "inspect_network"
+              },
+              "id": "QZp09X2bamLIgH8mmTnmNLXx7nUbk7w7",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"network\":\"healthy\"}",
+          "name": "inspect_network",
+          "role": "tool",
+          "tool_call_id": "QZp09X2bamLIgH8mmTnmNLXx7nUbk7w7"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"logs\"}",
+                "name": "inspect_config"
+              },
+              "id": "Dvps1rFlT1p6WxyUz0uMU31mSIqLFBub",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "Dvps1rFlT1p6WxyUz0uMU31mSIqLFBub"
+        }
+      ],
+      "model": "Qwen2.5-7B-Instruct",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool check_service. Use only when needed for the stated objective.",
+            "name": "check_service",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_network. Use only when needed for the stated objective.",
+            "name": "inspect_network",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_file. Use only when needed for the stated objective.",
+            "name": "inspect_file",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_config. Use only when needed for the stated objective.",
+            "name": "inspect_config",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool process_report. Use only when needed for the stated objective.",
+            "name": "process_report",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool query_logs. Use only when needed for the stated objective.",
+            "name": "query_logs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "query_logs"
+                  },
+                  "id": "83muE6rIfv48KeCGYmbn2qb6a2y35aFv",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789918048,
+        "id": "chatcmpl-VBPM7gHtJiL2tyMbbaliJLD579CrvTkC",
+        "model": "models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 1046,
+          "predicted_ms": 371.479,
+          "predicted_n": 16,
+          "predicted_per_second": 40.37913314076974,
+          "predicted_per_token_ms": 24.765266666666665,
+          "prompt_ms": 113.738,
+          "prompt_n": 30,
+          "prompt_per_second": 263.7640893984421,
+          "prompt_per_token_ms": 3.7912666666666666
+        },
+        "usage": {
+          "completion_tokens": 16,
+          "prompt_tokens": 1076,
+          "prompt_tokens_details": {
+            "cached_tokens": 1046
+          },
+          "total_tokens": 1092
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"query_logs\",\"arguments\":\"{}\"},\"id\":\"83muE6rIfv48KeCGYmbn2qb6a2y35aFv\"}]}}],\"created\":1789918048,\"model\":\"models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":16,\"prompt_tokens\":1076,\"total_tokens\":1092,\"prompt_tokens_details\":{\"cached_tokens\":1046}},\"id\":\"chatcmpl-VBPM7gHtJiL2tyMbbaliJLD579CrvTkC\",\"timings\":{\"cache_n\":1046,\"prompt_n\":30,\"prompt_ms\":113.738,\"prompt_per_token_ms\":3.7912666666666666,\"prompt_per_second\":263.7640893984421,\"predicted_n\":16,\"predicted_ms\":371.479,\"predicted_per_token_ms\":24.765266666666665,\"predicted_per_second\":40.37913314076974}}",
+      "status": 200
+    },
+    "turn": 10
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"check_service\", \"inspect_network\", \"inspect_file\", \"inspect_config\", \"process_report\", \"query_logs\"], \"initial_state\": {\"config\": \"analytics-db.internal:5432\", \"database\": \"healthy\", \"expected_header\": \"account_id\", \"header\": \"account-id\", \"input_file\": \"input.csv\", \"logs\": [\"parser: expected column account_id\", \"parser: received account-id\", \"fallback handler invoked\", \"reporter: dependency timeout\"], \"network\": \"healthy\", \"processed\": false}, \"objective\": \"Make the report generator successfully process the supplied dataset.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"config\"}",
+                "name": "inspect_config"
+              },
+              "id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"file_path\": \"input.csv\"}",
+                "name": "inspect_file"
+              },
+              "id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"expected\":\"account_id\",\"header\":\"account-id\"}",
+          "name": "inspect_file",
+          "role": "tool",
+          "tool_call_id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "query_logs"
+              },
+              "id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[\"parser: expected column account_id\",\"parser: received account-id\",\"fallback handler invoked\",\"reporter: dependency timeout\"]",
+          "name": "query_logs",
+          "role": "tool",
+          "tool_call_id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"service\": \"reporter\"}",
+                "name": "check_service"
+              },
+              "id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"database\":\"healthy\"}",
+          "name": "check_service",
+          "role": "tool",
+          "tool_call_id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"database\"}",
+                "name": "inspect_config"
+              },
+              "id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"header_mapping\": {\"account_id\": \"account-id\"}, \"config\": \"analytics-db.internal:5432\"}",
+                "name": "process_report"
+              },
+              "id": "C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"error\":\"connection timeout contacting analytics-db\"}",
+          "name": "process_report",
+          "role": "tool",
+          "tool_call_id": "C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"network\"}",
+                "name": "inspect_config"
+              },
+              "id": "bjCDAdlMibQqmlnEehCPSS9QtvxhssWA",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "bjCDAdlMibQqmlnEehCPSS9QtvxhssWA"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "inspect_network"
+              },
+              "id": "QZp09X2bamLIgH8mmTnmNLXx7nUbk7w7",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"network\":\"healthy\"}",
+          "name": "inspect_network",
+          "role": "tool",
+          "tool_call_id": "QZp09X2bamLIgH8mmTnmNLXx7nUbk7w7"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"logs\"}",
+                "name": "inspect_config"
+              },
+              "id": "Dvps1rFlT1p6WxyUz0uMU31mSIqLFBub",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "Dvps1rFlT1p6WxyUz0uMU31mSIqLFBub"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "query_logs"
+              },
+              "id": "83muE6rIfv48KeCGYmbn2qb6a2y35aFv",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[\"parser: expected column account_id\",\"parser: received account-id\",\"fallback handler invoked\",\"reporter: dependency timeout\"]",
+          "name": "query_logs",
+          "role": "tool",
+          "tool_call_id": "83muE6rIfv48KeCGYmbn2qb6a2y35aFv"
+        }
+      ],
+      "model": "Qwen2.5-7B-Instruct",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool check_service. Use only when needed for the stated objective.",
+            "name": "check_service",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_network. Use only when needed for the stated objective.",
+            "name": "inspect_network",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_file. Use only when needed for the stated objective.",
+            "name": "inspect_file",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_config. Use only when needed for the stated objective.",
+            "name": "inspect_config",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool process_report. Use only when needed for the stated objective.",
+            "name": "process_report",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool query_logs. Use only when needed for the stated objective.",
+            "name": "query_logs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"file_path\": \"input.csv\"}",
+                    "name": "inspect_file"
+                  },
+                  "id": "wT92rYCgCHwFUlVuwRYrenDOmkWjx638",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789918049,
+        "id": "chatcmpl-DlBqtBCrUGoPGBYqwjK5svHLvpzjKmcJ",
+        "model": "models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 1091,
+          "predicted_ms": 521.02,
+          "predicted_n": 22,
+          "predicted_per_second": 40.305554489271046,
+          "predicted_per_token_ms": 24.81047619047619,
+          "prompt_ms": 190.439,
+          "prompt_n": 42,
+          "prompt_per_second": 220.54306103266663,
+          "prompt_per_token_ms": 4.534261904761904
+        },
+        "usage": {
+          "completion_tokens": 22,
+          "prompt_tokens": 1133,
+          "prompt_tokens_details": {
+            "cached_tokens": 1091
+          },
+          "total_tokens": 1155
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"inspect_file\",\"arguments\":\"{\\\"file_path\\\": \\\"input.csv\\\"}\"},\"id\":\"wT92rYCgCHwFUlVuwRYrenDOmkWjx638\"}]}}],\"created\":1789918049,\"model\":\"models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":22,\"prompt_tokens\":1133,\"total_tokens\":1155,\"prompt_tokens_details\":{\"cached_tokens\":1091}},\"id\":\"chatcmpl-DlBqtBCrUGoPGBYqwjK5svHLvpzjKmcJ\",\"timings\":{\"cache_n\":1091,\"prompt_n\":42,\"prompt_ms\":190.439,\"prompt_per_token_ms\":4.534261904761904,\"prompt_per_second\":220.54306103266663,\"predicted_n\":22,\"predicted_ms\":521.02,\"predicted_per_token_ms\":24.81047619047619,\"predicted_per_second\":40.305554489271046}}",
+      "status": 200
+    },
+    "turn": 11
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"check_service\", \"inspect_network\", \"inspect_file\", \"inspect_config\", \"process_report\", \"query_logs\"], \"initial_state\": {\"config\": \"analytics-db.internal:5432\", \"database\": \"healthy\", \"expected_header\": \"account_id\", \"header\": \"account-id\", \"input_file\": \"input.csv\", \"logs\": [\"parser: expected column account_id\", \"parser: received account-id\", \"fallback handler invoked\", \"reporter: dependency timeout\"], \"network\": \"healthy\", \"processed\": false}, \"objective\": \"Make the report generator successfully process the supplied dataset.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"config\"}",
+                "name": "inspect_config"
+              },
+              "id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "TZK61mNZQImJ0N5it5F8Xx01WpbQLlS3"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"file_path\": \"input.csv\"}",
+                "name": "inspect_file"
+              },
+              "id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"expected\":\"account_id\",\"header\":\"account-id\"}",
+          "name": "inspect_file",
+          "role": "tool",
+          "tool_call_id": "2eYAlu46lkBl5CteEpTDIW98pQi8aBme"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "query_logs"
+              },
+              "id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[\"parser: expected column account_id\",\"parser: received account-id\",\"fallback handler invoked\",\"reporter: dependency timeout\"]",
+          "name": "query_logs",
+          "role": "tool",
+          "tool_call_id": "eHUBqNs75pUS6VJtHiZNMhqFcVQWEcJv"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"service\": \"reporter\"}",
+                "name": "check_service"
+              },
+              "id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"database\":\"healthy\"}",
+          "name": "check_service",
+          "role": "tool",
+          "tool_call_id": "WOyUGP4SNUdspHnjj5DofXWTizjvEfk7"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"database\"}",
+                "name": "inspect_config"
+              },
+              "id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "BTywIsfdWWBtyPw3M6F0IiSgXgQB7MtG"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"header_mapping\": {\"account_id\": \"account-id\"}, \"config\": \"analytics-db.internal:5432\"}",
+                "name": "process_report"
+              },
+              "id": "C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"error\":\"connection timeout contacting analytics-db\"}",
+          "name": "process_report",
+          "role": "tool",
+          "tool_call_id": "C5UjDsvaNTTtMW3P1vgFUVpGYdKj1CK9"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"network\"}",
+                "name": "inspect_config"
+              },
+              "id": "bjCDAdlMibQqmlnEehCPSS9QtvxhssWA",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "bjCDAdlMibQqmlnEehCPSS9QtvxhssWA"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "inspect_network"
+              },
+              "id": "QZp09X2bamLIgH8mmTnmNLXx7nUbk7w7",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"network\":\"healthy\"}",
+          "name": "inspect_network",
+          "role": "tool",
+          "tool_call_id": "QZp09X2bamLIgH8mmTnmNLXx7nUbk7w7"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"config_key\": \"logs\"}",
+                "name": "inspect_config"
+              },
+              "id": "Dvps1rFlT1p6WxyUz0uMU31mSIqLFBub",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"config\":\"analytics-db.internal:5432\"}",
+          "name": "inspect_config",
+          "role": "tool",
+          "tool_call_id": "Dvps1rFlT1p6WxyUz0uMU31mSIqLFBub"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "query_logs"
+              },
+              "id": "83muE6rIfv48KeCGYmbn2qb6a2y35aFv",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[\"parser: expected column account_id\",\"parser: received account-id\",\"fallback handler invoked\",\"reporter: dependency timeout\"]",
+          "name": "query_logs",
+          "role": "tool",
+          "tool_call_id": "83muE6rIfv48KeCGYmbn2qb6a2y35aFv"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"file_path\": \"input.csv\"}",
+                "name": "inspect_file"
+              },
+              "id": "wT92rYCgCHwFUlVuwRYrenDOmkWjx638",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"expected\":\"account_id\",\"header\":\"account-id\"}",
+          "name": "inspect_file",
+          "role": "tool",
+          "tool_call_id": "wT92rYCgCHwFUlVuwRYrenDOmkWjx638"
+        }
+      ],
+      "model": "Qwen2.5-7B-Instruct",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool check_service. Use only when needed for the stated objective.",
+            "name": "check_service",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_network. Use only when needed for the stated objective.",
+            "name": "inspect_network",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_file. Use only when needed for the stated objective.",
+            "name": "inspect_file",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool inspect_config. Use only when needed for the stated objective.",
+            "name": "inspect_config",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool process_report. Use only when needed for the stated objective.",
+            "name": "process_report",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool query_logs. Use only when needed for the stated objective.",
+            "name": "query_logs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"header_mapping\": {\"account_id\": \"account-id\"}, \"config\": \"analytics-db.internal:5432\", \"retry_connection\": true}",
+                    "name": "process_report"
+                  },
+                  "id": "f5jxOQnKEPo0lswXOLxHv2Emo3DOI8qt",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789918050,
+        "id": "chatcmpl-zpEQTkUJejuL0h69iWtzmiFwKDwMwAT1",
+        "model": "models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 1154,
+          "predicted_ms": 1089.499,
+          "predicted_n": 45,
+          "predicted_per_second": 40.38553500278568,
+          "predicted_per_token_ms": 24.761340909090908,
+          "prompt_ms": 115.115,
+          "prompt_n": 29,
+          "prompt_per_second": 251.92199105242585,
+          "prompt_per_token_ms": 3.9694827586206896
+        },
+        "usage": {
+          "completion_tokens": 45,
+          "prompt_tokens": 1183,
+          "prompt_tokens_details": {
+            "cached_tokens": 1154
+          },
+          "total_tokens": 1228
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"process_report\",\"arguments\":\"{\\\"header_mapping\\\": {\\\"account_id\\\": \\\"account-id\\\"}, \\\"config\\\": \\\"analytics-db.internal:5432\\\", \\\"retry_connection\\\": true}\"},\"id\":\"f5jxOQnKEPo0lswXOLxHv2Emo3DOI8qt\"}]}}],\"created\":1789918050,\"model\":\"models/mac-qwen25-7b/qwen2.5-7b-instruct-q4_k_m-00001-of-00002.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":45,\"prompt_tokens\":1183,\"total_tokens\":1228,\"prompt_tokens_details\":{\"cached_tokens\":1154}},\"id\":\"chatcmpl-zpEQTkUJejuL0h69iWtzmiFwKDwMwAT1\",\"timings\":{\"cache_n\":1154,\"prompt_n\":29,\"prompt_ms\":115.115,\"prompt_per_token_ms\":3.9694827586206896,\"prompt_per_second\":251.92199105242585,\"predicted_n\":45,\"predicted_ms\":1089.499,\"predicted_per_token_ms\":24.761340909090908,\"predicted_per_second\":40.38553500278568}}",
+      "status": 200
+    },
+    "turn": 12
+  }
+]

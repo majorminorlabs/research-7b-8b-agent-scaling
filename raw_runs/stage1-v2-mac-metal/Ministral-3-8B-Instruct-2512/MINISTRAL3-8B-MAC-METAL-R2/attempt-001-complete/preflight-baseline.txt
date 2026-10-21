@@ -1,0 +1,85 @@
+Sun Sep 20 16:28:04 UTC 2026
+11:28  up  1:50, 1 user, load averages: 4.85 5.02 4.96
+--- memory ---
+34359738368
+The system has 34359738368 (8388608 pages with a page size of 4096).
+
+Stats: 
+Pages free: 199923 
+Pages purgeable: 1289 
+Pages purged: 47421 
+
+Swap I/O:
+Swapins: 0 
+Swapouts: 0 
+
+Page Q counts:
+Pages active: 857902 
+Pages inactive: 617449 
+Pages speculative: 239701 
+Pages throttled: 0 
+Pages wired down: 129358 
+
+Compressor Stats:
+Pages used by compressor: 16695 
+Pages decompressed: 28388 
+Pages compressed: 68199 
+
+File I/O:
+Pageins: 2869330 
+Pageouts: 6585 
+
+System-wide memory free percentage: 92%
+--- swap ---
+total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)
+--- vm_stat ---
+Mach Virtual Memory Statistics: (page size of 16384 bytes)
+Pages free:                                   199985.
+Pages active:                                 857875.
+Pages inactive:                               617488.
+Pages speculative:                            239701.
+Pages throttled:                                   0.
+Pages wired down:                             129358.
+Pages purgeable:                                1289.
+"Translation faults":                       60007640.
+Pages copy-on-write:                         4040544.
+Pages zero filled:                          37208671.
+Pages reactivated:                             47114.
+Pages purged:                                  47421.
+File-backed pages:                            836968.
+Anonymous pages:                              878096.
+Pages stored in compressor:                    39023.
+Pages occupied by compressor:                  16695.
+Decompressions:                                28388.
+Compressions:                                  68199.
+Pageins:                                     2869330.
+Pageouts:                                       6585.
+Swapins:                                           0.
+Swapouts:                                          0.
+--- llama processes ---
+36623 /bin/zsh -c pgrep -alf 'llama-server|llama-cli' || true; run_root='raw_runs/stage1-v2-mac-metal/Ministral-3-8B-Instruct-2512/MINISTRAL3-8B-MAC-METAL-R2/attempt-001-complete'; mkdir -p "$run_root"; { date -u; uptime; printf '%s\n' '--- memory ---'; sysctl -n hw.memsize; memory_pressure; printf '%s\n' '--- swap ---'; sysctl -n vm.swapusage; printf '%s\n' '--- vm_stat ---'; vm_stat; printf '%s\n' '--- llama processes ---'; pgrep -alf 'llama-server|llama-cli' || true; printf '%s\n' '--- top rss ---'; ps -axo pid,ppid,rss,vsz,%cpu,%mem,comm | sort -nk3 | tail -20; printf '%s\n' '--- runtime ---'; git rev-parse HEAD; git -C runtime/llama.cpp-972d2313b rev-parse HEAD; shasum -a 256 models/mac-ministral-8b/Ministral-3-8B-Instruct-2512-Q4_K_M.gguf; } > "$run_root/preflight-baseline.txt"; MODEL_NAME='Ministral-3-8B-Instruct-2512' execution/run_mac_metal_cohort.sh models/mac-ministral-8b/Ministral-3-8B-Instruct-2512-Q4_K_M.gguf "$run_root" 18082
+--- top rss ---
+ 1262   407 199440 435743760  11.1  0.6 <HOME> Computer Use.app/Contents/MacOS/SkyComputerUseService
+  224     1 206160 435500864   0.0  0.6 /usr/libexec/mobileassetd
+18863   394 214272 1949200784   0.0  0.6 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/153.0.8010.52/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+  404     1 226112 436150624   0.0  0.7 /usr/libexec/sharingd
+18830 17391 236128 444716896   0.0  0.7 /Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node
+  571     1 244624 435531376   0.0  0.7 /System/Library/PrivateFrameworks/MediaAnalysis.framework/Versions/A/mediaanalysisd
+20606   394 247408 1949287296   0.0  0.7 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/153.0.8010.52/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+ 3097  2641 354240 435844528   5.2  1.1 /Applications/ChatGPT.app/Contents/Resources/codex
+20899   394 361408 1949216272   2.8  1.1 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/153.0.8010.52/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+ 1076   407 393200 435898000   1.3  1.2 /Applications/ChatGPT.app/Contents/Resources/codex
+  472     1 414448 438159008   0.0  1.2 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/corespotlightd
+  394     1 416256 537239344   0.4  1.2 /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+ 3151  2641 441712 1949144736   0.1  1.3 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/153.0.8010.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)
+ 1304   407 458960 1949259408   0.1  1.4 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/153.0.8010.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)
+ 3183  2641 461232 1949176992   0.1  1.4 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/153.0.8010.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)
+ 1084   407 513120 1949227824   7.4  1.5 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/153.0.8010.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)
+ 3100  2641 571344 1949146720   5.4  1.7 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/153.0.8010.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)
+ 1085   407 634256 1949228160   4.2  1.9 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/153.0.8010.48/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)
+ 2641     1 678656 1951675536   0.6  2.0 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT
+  407     1 679744 1951771504   1.2  2.0 /Applications/ChatGPT.app/Contents/MacOS/ChatGPT
+--- runtime ---
+54490baca0eafb2a38ca7fee0dd5427ab8b6d788
+972d2313bc0bf0a45f634f77d95c9fb03aeab12c
+33e7a72cf5e6e2cfc2f2847075acc013d68bba023e35310cef86b5cf8fdca761  models/mac-ministral-8b/Ministral-3-8B-Instruct-2512-Q4_K_M.gguf

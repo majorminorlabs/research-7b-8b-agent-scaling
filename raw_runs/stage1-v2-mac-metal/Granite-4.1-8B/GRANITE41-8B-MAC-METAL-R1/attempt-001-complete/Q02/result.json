@@ -1,0 +1,274 @@
+{
+  "attempt_id": "Q02-attempt-001",
+  "elapsed_s": 8.69187008300014,
+  "errors": [],
+  "events": [
+    {
+      "arguments": {
+        "id": "inventory-sync"
+      },
+      "ok": true,
+      "response": {
+        "credential": "secret/warehouse-prod",
+        "database": "inventory",
+        "host": "warehouse-prod-01.internal",
+        "labels": {
+          "owner": "ops"
+        },
+        "name": "inventory-sync",
+        "port": 5432,
+        "retries": 3,
+        "schedule": "0 */2 * * *",
+        "timeout": 120
+      },
+      "state": {
+        "environment": {
+          "credential": "secret/warehouse-prod-v2",
+          "database": "inventory_v2",
+          "host": "warehouse-prod-02.internal",
+          "name": "PRODUCTION_WAREHOUSE",
+          "port": 6432,
+          "updated_at": "2026-09-14"
+        },
+        "job": {
+          "credential": "secret/warehouse-prod",
+          "database": "inventory",
+          "host": "warehouse-prod-01.internal",
+          "labels": {
+            "owner": "ops"
+          },
+          "name": "inventory-sync",
+          "port": 5432,
+          "retries": 3,
+          "schedule": "0 */2 * * *",
+          "timeout": 120
+        }
+      },
+      "tool": "get_job",
+      "type": "tool_call"
+    },
+    {
+      "arguments": {
+        "credential": "secret/warehouse-prod-v2",
+        "host": "warehouse-prod-02.internal",
+        "id": "inventory-sync",
+        "port": 6432
+      },
+      "ok": true,
+      "response": {},
+      "state": {
+        "environment": {
+          "credential": "secret/warehouse-prod-v2",
+          "database": "inventory_v2",
+          "host": "warehouse-prod-02.internal",
+          "name": "PRODUCTION_WAREHOUSE",
+          "port": 6432,
+          "updated_at": "2026-09-14"
+        },
+        "job": {}
+      },
+      "tool": "replace_job",
+      "type": "tool_call"
+    },
+    {
+      "arguments": {
+        "id": "inventory-sync"
+      },
+      "ok": true,
+      "response": {},
+      "state": {
+        "environment": {
+          "credential": "secret/warehouse-prod-v2",
+          "database": "inventory_v2",
+          "host": "warehouse-prod-02.internal",
+          "name": "PRODUCTION_WAREHOUSE",
+          "port": 6432,
+          "updated_at": "2026-09-14"
+        },
+        "job": {}
+      },
+      "tool": "get_job",
+      "type": "tool_call"
+    },
+    {
+      "arguments": {},
+      "ok": true,
+      "response": [],
+      "state": {
+        "environment": {
+          "credential": "secret/warehouse-prod-v2",
+          "database": "inventory_v2",
+          "host": "warehouse-prod-02.internal",
+          "name": "PRODUCTION_WAREHOUSE",
+          "port": 6432,
+          "updated_at": "2026-09-14"
+        },
+        "job": {}
+      },
+      "tool": "get_job_history",
+      "type": "tool_call"
+    },
+    {
+      "reason": "model_stop",
+      "state": {
+        "environment": {
+          "credential": "secret/warehouse-prod-v2",
+          "database": "inventory_v2",
+          "host": "warehouse-prod-02.internal",
+          "name": "PRODUCTION_WAREHOUSE",
+          "port": 6432,
+          "updated_at": "2026-09-14"
+        },
+        "job": {}
+      },
+      "type": "termination"
+    }
+  ],
+  "model": "Granite-4.1-8B",
+  "raw_response_count": 5,
+  "resource_samples": [
+    {
+      "epoch": 1789919654.069597,
+      "memory_pressure": "The system has 34359738368 (2097152 pages with a page size of 16384).\n\nStats: \nPages free: 15214 \nPages purgeable: 9138 \nPages purged: 34726 \n\nSwap I/O:\nSwapins: 0 \nSwapouts: 0 \n\nPage Q counts:\nPages active: 689052 \nPages inactive: 604824 \nPages speculative: 83326 \nPages throttled: 0 \nPages wired down: 649601 \n\nCompressor Stats:\nPages used by compressor: 19068 \nPages decompressed: 23854 \nPages compressed: 68199 \n\nFile I/O:\nPageins: 2287297 \nPageouts: 6322 \n\nSystem-wide memory free percentage: 67%",
+      "phase": "before_request",
+      "physical_memory_bytes": "34359738368",
+      "pid": 25015,
+      "platform": "macOS",
+      "process_snapshot": "PID  PPID    RSS      VSZ  %CPU %MEM \n25015 25013 7985648 443624432  86.3 23.8 <WORKDIR> --model models/mac-granite-8b/granite-4.1-8b-Q4_K_M.gguf --host <REDACTED_IP> --port 18095 --gpu-layers 99 --ctx-size 16384 --parallel 1 --jinja --temperature 0 --seed 0",
+      "rss_bytes": 8177303552,
+      "swapusage": {
+        "raw": "total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)"
+      },
+      "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                    15196.\nPages active:                                 689058.\nPages inactive:                               604824.\nPages speculative:                             83326.\nPages throttled:                                   0.\nPages wired down:                             649672.\nPages purgeable:                                9138.\n\"Translation faults\":                       43582469.\nPages copy-on-write:                         2832276.\nPages zero filled:                          27621917.\nPages reactivated:                             40214.\nPages purged:                                  34726.\nFile-backed pages:                            515593.\nAnonymous pages:                              861615.\nPages stored in compressor:                    43577.\nPages occupied by compressor:                  19068.\nDecompressions:                                23854.\nCompressions:                                  68199.\nPageins:                                     2287298.\nPageouts:                                       6322.\nSwapins:                                           0.\nSwapouts:                                          0."
+    },
+    {
+      "epoch": 1789919657.0775812,
+      "memory_pressure": "The system has 34359738368 (2097152 pages with a page size of 16384).\n\nStats: \nPages free: 3868 \nPages purgeable: 8303 \nPages purged: 34738 \n\nSwap I/O:\nSwapins: 0 \nSwapouts: 0 \n\nPage Q counts:\nPages active: 694066 \nPages inactive: 620989 \nPages speculative: 72800 \nPages throttled: 0 \nPages wired down: 650210 \n\nCompressor Stats:\nPages used by compressor: 19068 \nPages decompressed: 23854 \nPages compressed: 68199 \n\nFile I/O:\nPageins: 2287383 \nPageouts: 6322 \n\nSystem-wide memory free percentage: 67%",
+      "phase": "after_request_1",
+      "physical_memory_bytes": "34359738368",
+      "pid": 25015,
+      "platform": "macOS",
+      "process_snapshot": "PID  PPID    RSS      VSZ  %CPU %MEM \n25015 25013 8266368 443904944 227.6 24.6 <WORKDIR> --model models/mac-granite-8b/granite-4.1-8b-Q4_K_M.gguf --host <REDACTED_IP> --port 18095 --gpu-layers 99 --ctx-size 16384 --parallel 1 --jinja --temperature 0 --seed 0",
+      "rss_bytes": 8464760832,
+      "swapusage": {
+        "raw": "total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)"
+      },
+      "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     3855.\nPages active:                                 694070.\nPages inactive:                               620989.\nPages speculative:                             72806.\nPages throttled:                                   0.\nPages wired down:                             650210.\nPages purgeable:                                8303.\n\"Translation faults\":                       43623458.\nPages copy-on-write:                         2833622.\nPages zero filled:                          27669064.\nPages reactivated:                             40214.\nPages purged:                                  34738.\nFile-backed pages:                            504946.\nAnonymous pages:                              882919.\nPages stored in compressor:                    43577.\nPages occupied by compressor:                  19068.\nDecompressions:                                23854.\nCompressions:                                  68199.\nPageins:                                     2287384.\nPageouts:                                       6322.\nSwapins:                                           0.\nSwapouts:                                          0."
+    },
+    {
+      "epoch": 1789919657.0990138,
+      "memory_pressure": "The system has 34359738368 (2097152 pages with a page size of 16384).\n\nStats: \nPages free: 4037 \nPages purgeable: 8303 \nPages purged: 34738 \n\nSwap I/O:\nSwapins: 0 \nSwapouts: 0 \n\nPage Q counts:\nPages active: 693831 \nPages inactive: 620962 \nPages speculative: 72869 \nPages throttled: 0 \nPages wired down: 650209 \n\nCompressor Stats:\nPages used by compressor: 19068 \nPages decompressed: 23854 \nPages compressed: 68199 \n\nFile I/O:\nPageins: 2287389 \nPageouts: 6322 \n\nSystem-wide memory free percentage: 67%",
+      "phase": "after_tools_1",
+      "physical_memory_bytes": "34359738368",
+      "pid": 25015,
+      "platform": "macOS",
+      "process_snapshot": "PID  PPID    RSS      VSZ  %CPU %MEM \n25015 25013 8266368 443904944 227.6 24.6 <WORKDIR> --model models/mac-granite-8b/granite-4.1-8b-Q4_K_M.gguf --host <REDACTED_IP> --port 18095 --gpu-layers 99 --ctx-size 16384 --parallel 1 --jinja --temperature 0 --seed 0",
+      "rss_bytes": 8464760832,
+      "swapusage": {
+        "raw": "total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)"
+      },
+      "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     4118.\nPages active:                                 693832.\nPages inactive:                               620962.\nPages speculative:                             72875.\nPages throttled:                                   0.\nPages wired down:                             650129.\nPages purgeable:                                8303.\n\"Translation faults\":                       43626413.\nPages copy-on-write:                         2834447.\nPages zero filled:                          27669469.\nPages reactivated:                             40214.\nPages purged:                                  34738.\nFile-backed pages:                            505015.\nAnonymous pages:                              882654.\nPages stored in compressor:                    43577.\nPages occupied by compressor:                  19068.\nDecompressions:                                23854.\nCompressions:                                  68199.\nPageins:                                     2287390.\nPageouts:                                       6322.\nSwapins:                                           0.\nSwapouts:                                          0."
+    },
+    {
+      "epoch": 1789919658.933219,
+      "memory_pressure": "The system has 34359738368 (2097152 pages with a page size of 16384).\n\nStats: \nPages free: 9778 \nPages purgeable: 8981 \nPages purged: 34740 \n\nSwap I/O:\nSwapins: 0 \nSwapouts: 0 \n\nPage Q counts:\nPages active: 691808 \nPages inactive: 618341 \nPages speculative: 73173 \nPages throttled: 0 \nPages wired down: 648979 \n\nCompressor Stats:\nPages used by compressor: 19068 \nPages decompressed: 23854 \nPages compressed: 68199 \n\nFile I/O:\nPageins: 2287572 \nPageouts: 6322 \n\nSystem-wide memory free percentage: 67%",
+      "phase": "after_request_2",
+      "physical_memory_bytes": "34359738368",
+      "pid": 25015,
+      "platform": "macOS",
+      "process_snapshot": "PID  PPID    RSS      VSZ  %CPU %MEM \n25015 25013 8266416 443904944 237.4 24.6 <WORKDIR> --model models/mac-granite-8b/granite-4.1-8b-Q4_K_M.gguf --host <REDACTED_IP> --port 18095 --gpu-layers 99 --ctx-size 16384 --parallel 1 --jinja --temperature 0 --seed 0",
+      "rss_bytes": 8464809984,
+      "swapusage": {
+        "raw": "total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)"
+      },
+      "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     9639.\nPages active:                                 691809.\nPages inactive:                               618341.\nPages speculative:                             73174.\nPages throttled:                                   0.\nPages wired down:                             649059.\nPages purgeable:                                8981.\n\"Translation faults\":                       43636473.\nPages copy-on-write:                         2835449.\nPages zero filled:                          27680939.\nPages reactivated:                             40214.\nPages purged:                                  34740.\nFile-backed pages:                            505313.\nAnonymous pages:                              878011.\nPages stored in compressor:                    43577.\nPages occupied by compressor:                  19068.\nDecompressions:                                23854.\nCompressions:                                  68199.\nPageins:                                     2287573.\nPageouts:                                       6322.\nSwapins:                                           0.\nSwapouts:                                          0."
+    },
+    {
+      "epoch": 1789919658.955884,
+      "memory_pressure": "The system has 34359738368 (2097152 pages with a page size of 16384).\n\nStats: \nPages free: 9600 \nPages purgeable: 8981 \nPages purged: 34740 \n\nSwap I/O:\nSwapins: 0 \nSwapouts: 0 \n\nPage Q counts:\nPages active: 691808 \nPages inactive: 618341 \nPages speculative: 73177 \nPages throttled: 0 \nPages wired down: 649059 \n\nCompressor Stats:\nPages used by compressor: 19068 \nPages decompressed: 23854 \nPages compressed: 68199 \n\nFile I/O:\nPageins: 2287578 \nPageouts: 6322 \n\nSystem-wide memory free percentage: 67%",
+      "phase": "after_tools_2",
+      "physical_memory_bytes": "34359738368",
+      "pid": 25015,
+      "platform": "macOS",
+      "process_snapshot": "PID  PPID    RSS      VSZ  %CPU %MEM \n25015 25013 8266416 443904944 237.4 24.6 <WORKDIR> --model models/mac-granite-8b/granite-4.1-8b-Q4_K_M.gguf --host <REDACTED_IP> --port 18095 --gpu-layers 99 --ctx-size 16384 --parallel 1 --jinja --temperature 0 --seed 0",
+      "rss_bytes": 8464809984,
+      "swapusage": {
+        "raw": "total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)"
+      },
+      "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     9524.\nPages active:                                 691809.\nPages inactive:                               618341.\nPages speculative:                             73180.\nPages throttled:                                   0.\nPages wired down:                             649059.\nPages purgeable:                                8981.\n\"Translation faults\":                       43639396.\nPages copy-on-write:                         2836275.\nPages zero filled:                          27681328.\nPages reactivated:                             40214.\nPages purged:                                  34740.\nFile-backed pages:                            505319.\nAnonymous pages:                              878011.\nPages stored in compressor:                    43577.\nPages occupied by compressor:                  19068.\nDecompressions:                                23854.\nCompressions:                                  68199.\nPageins:                                     2287579.\nPageouts:                                       6322.\nSwapins:                                           0.\nSwapouts:                                          0."
+    },
+    {
+      "epoch": 1789919659.714565,
+      "memory_pressure": "The system has 34359738368 (2097152 pages with a page size of 16384).\n\nStats: \nPages free: 8703 \nPages purgeable: 8301 \nPages purged: 34740 \n\nSwap I/O:\nSwapins: 0 \nSwapouts: 0 \n\nPage Q counts:\nPages active: 691457 \nPages inactive: 617784 \nPages speculative: 73499 \nPages throttled: 0 \nPages wired down: 650515 \n\nCompressor Stats:\nPages used by compressor: 19068 \nPages decompressed: 23854 \nPages compressed: 68199 \n\nFile I/O:\nPageins: 2287587 \nPageouts: 6322 \n\nSystem-wide memory free percentage: 67%",
+      "phase": "after_request_3",
+      "physical_memory_bytes": "34359738368",
+      "pid": 25015,
+      "platform": "macOS",
+      "process_snapshot": "PID  PPID    RSS      VSZ  %CPU %MEM \n25015 25013 8266416 443904944 231.2 24.6 <WORKDIR> --model models/mac-granite-8b/granite-4.1-8b-Q4_K_M.gguf --host <REDACTED_IP> --port 18095 --gpu-layers 99 --ctx-size 16384 --parallel 1 --jinja --temperature 0 --seed 0",
+      "rss_bytes": 8464809984,
+      "swapusage": {
+        "raw": "total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)"
+      },
+      "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     8709.\nPages active:                                 691458.\nPages inactive:                               617784.\nPages speculative:                             73499.\nPages throttled:                                   0.\nPages wired down:                             650443.\nPages purgeable:                                8301.\n\"Translation faults\":                       43643672.\nPages copy-on-write:                         2837101.\nPages zero filled:                          27686558.\nPages reactivated:                             40214.\nPages purged:                                  34740.\nFile-backed pages:                            505638.\nAnonymous pages:                              877103.\nPages stored in compressor:                    43577.\nPages occupied by compressor:                  19068.\nDecompressions:                                23854.\nCompressions:                                  68199.\nPageins:                                     2287588.\nPageouts:                                       6322.\nSwapins:                                           0.\nSwapouts:                                          0."
+    },
+    {
+      "epoch": 1789919659.736135,
+      "memory_pressure": "The system has 34359738368 (2097152 pages with a page size of 16384).\n\nStats: \nPages free: 8857 \nPages purgeable: 8301 \nPages purged: 34740 \n\nSwap I/O:\nSwapins: 0 \nSwapouts: 0 \n\nPage Q counts:\nPages active: 691460 \nPages inactive: 617784 \nPages speculative: 73503 \nPages throttled: 0 \nPages wired down: 650443 \n\nCompressor Stats:\nPages used by compressor: 19068 \nPages decompressed: 23854 \nPages compressed: 68199 \n\nFile I/O:\nPageins: 2287593 \nPageouts: 6322 \n\nSystem-wide memory free percentage: 67%",
+      "phase": "after_tools_3",
+      "physical_memory_bytes": "34359738368",
+      "pid": 25015,
+      "platform": "macOS",
+      "process_snapshot": "PID  PPID    RSS      VSZ  %CPU %MEM \n25015 25013 8266416 443904944 231.2 24.6 <WORKDIR> --model models/mac-granite-8b/granite-4.1-8b-Q4_K_M.gguf --host <REDACTED_IP> --port 18095 --gpu-layers 99 --ctx-size 16384 --parallel 1 --jinja --temperature 0 --seed 0",
+      "rss_bytes": 8464809984,
+      "swapusage": {
+        "raw": "total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)"
+      },
+      "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     8782.\nPages active:                                 691461.\nPages inactive:                               617784.\nPages speculative:                             73504.\nPages throttled:                                   0.\nPages wired down:                             650514.\nPages purgeable:                                8301.\n\"Translation faults\":                       43646590.\nPages copy-on-write:                         2837929.\nPages zero filled:                          27687021.\nPages reactivated:                             40214.\nPages purged:                                  34740.\nFile-backed pages:                            505643.\nAnonymous pages:                              877106.\nPages stored in compressor:                    43577.\nPages occupied by compressor:                  19068.\nDecompressions:                                23854.\nCompressions:                                  68199.\nPageins:                                     2287594.\nPageouts:                                       6322.\nSwapins:                                           0.\nSwapouts:                                          0."
+    },
+    {
+      "epoch": 1789919660.376638,
+      "memory_pressure": "The system has 34359738368 (2097152 pages with a page size of 16384).\n\nStats: \nPages free: 8477 \nPages purgeable: 8468 \nPages purged: 34740 \n\nSwap I/O:\nSwapins: 0 \nSwapouts: 0 \n\nPage Q counts:\nPages active: 691886 \nPages inactive: 617863 \nPages speculative: 73729 \nPages throttled: 0 \nPages wired down: 650025 \n\nCompressor Stats:\nPages used by compressor: 19068 \nPages decompressed: 23854 \nPages compressed: 68199 \n\nFile I/O:\nPageins: 2287600 \nPageouts: 6322 \n\nSystem-wide memory free percentage: 67%",
+      "phase": "after_request_4",
+      "physical_memory_bytes": "34359738368",
+      "pid": 25015,
+      "platform": "macOS",
+      "process_snapshot": "PID  PPID    RSS      VSZ  %CPU %MEM \n25015 25013 8266416 443904944 206.5 24.6 <WORKDIR> --model models/mac-granite-8b/granite-4.1-8b-Q4_K_M.gguf --host <REDACTED_IP> --port 18095 --gpu-layers 99 --ctx-size 16384 --parallel 1 --jinja --temperature 0 --seed 0",
+      "rss_bytes": 8464809984,
+      "swapusage": {
+        "raw": "total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)"
+      },
+      "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     8465.\nPages active:                                 691887.\nPages inactive:                               617863.\nPages speculative:                             73732.\nPages throttled:                                   0.\nPages wired down:                             650025.\nPages purgeable:                                8468.\n\"Translation faults\":                       43650469.\nPages copy-on-write:                         2838757.\nPages zero filled:                          27691026.\nPages reactivated:                             40214.\nPages purged:                                  34740.\nFile-backed pages:                            505871.\nAnonymous pages:                              877611.\nPages stored in compressor:                    43577.\nPages occupied by compressor:                  19068.\nDecompressions:                                23854.\nCompressions:                                  68199.\nPageins:                                     2287601.\nPageouts:                                       6322.\nSwapins:                                           0.\nSwapouts:                                          0."
+    },
+    {
+      "epoch": 1789919660.399242,
+      "memory_pressure": "The system has 34359738368 (2097152 pages with a page size of 16384).\n\nStats: \nPages free: 8491 \nPages purgeable: 8162 \nPages purged: 34740 \n\nSwap I/O:\nSwapins: 0 \nSwapouts: 0 \n\nPage Q counts:\nPages active: 691463 \nPages inactive: 617767 \nPages speculative: 73737 \nPages throttled: 0 \nPages wired down: 650545 \n\nCompressor Stats:\nPages used by compressor: 19068 \nPages decompressed: 23854 \nPages compressed: 68199 \n\nFile I/O:\nPageins: 2287606 \nPageouts: 6322 \n\nSystem-wide memory free percentage: 67%",
+      "phase": "after_tools_4",
+      "physical_memory_bytes": "34359738368",
+      "pid": 25015,
+      "platform": "macOS",
+      "process_snapshot": "PID  PPID    RSS      VSZ  %CPU %MEM \n25015 25013 8266416 443904944 206.5 24.6 <WORKDIR> --model models/mac-granite-8b/granite-4.1-8b-Q4_K_M.gguf --host <REDACTED_IP> --port 18095 --gpu-layers 99 --ctx-size 16384 --parallel 1 --jinja --temperature 0 --seed 0",
+      "rss_bytes": 8464809984,
+      "swapusage": {
+        "raw": "total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)"
+      },
+      "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     8638.\nPages active:                                 691464.\nPages inactive:                               617767.\nPages speculative:                             73738.\nPages throttled:                                   0.\nPages wired down:                             650474.\nPages purgeable:                                8162.\n\"Translation faults\":                       43653409.\nPages copy-on-write:                         2839587.\nPages zero filled:                          27691439.\nPages reactivated:                             40214.\nPages purged:                                  34740.\nFile-backed pages:                            505877.\nAnonymous pages:                              877092.\nPages stored in compressor:                    43577.\nPages occupied by compressor:                  19068.\nDecompressions:                                23854.\nCompressions:                                  68199.\nPageins:                                     2287607.\nPageouts:                                       6322.\nSwapins:                                           0.\nSwapouts:                                          0."
+    },
+    {
+      "epoch": 1789919662.7577221,
+      "memory_pressure": "The system has 34359738368 (2097152 pages with a page size of 16384).\n\nStats: \nPages free: 8366 \nPages purgeable: 9222 \nPages purged: 34740 \n\nSwap I/O:\nSwapins: 0 \nSwapouts: 0 \n\nPage Q counts:\nPages active: 693510 \nPages inactive: 618584 \nPages speculative: 73933 \nPages throttled: 0 \nPages wired down: 647387 \n\nCompressor Stats:\nPages used by compressor: 19068 \nPages decompressed: 23854 \nPages compressed: 68199 \n\nFile I/O:\nPageins: 2287648 \nPageouts: 6322 \n\nSystem-wide memory free percentage: 67%",
+      "phase": "after_request_5",
+      "physical_memory_bytes": "34359738368",
+      "pid": 25015,
+      "platform": "macOS",
+      "process_snapshot": "PID  PPID    RSS      VSZ  %CPU %MEM \n25015 25013 8266416 443904944 220.1 24.6 <WORKDIR> --model models/mac-granite-8b/granite-4.1-8b-Q4_K_M.gguf --host <REDACTED_IP> --port 18095 --gpu-layers 99 --ctx-size 16384 --parallel 1 --jinja --temperature 0 --seed 0",
+      "rss_bytes": 8464809984,
+      "swapusage": {
+        "raw": "total = 0.00M  used = 0.00M  free = 0.00M  (encrypted)"
+      },
+      "vm_stat": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     8453.\nPages active:                                 693453.\nPages inactive:                               618665.\nPages speculative:                             73933.\nPages throttled:                                   0.\nPages wired down:                             647282.\nPages purgeable:                                9222.\n\"Translation faults\":                       43661808.\nPages copy-on-write:                         2840570.\nPages zero filled:                          27706135.\nPages reactivated:                             40214.\nPages purged:                                  34740.\nFile-backed pages:                            506071.\nAnonymous pages:                              879980.\nPages stored in compressor:                    43577.\nPages occupied by compressor:                  19068.\nDecompressions:                                23854.\nCompressions:                                  68199.\nPageins:                                     2287649.\nPageouts:                                       6322.\nSwapins:                                           0.\nSwapouts:                                          0."
+    }
+  ],
+  "status": "complete",
+  "task": "Q02",
+  "turns": 5
+}

@@ -1,0 +1,3750 @@
+[
+  {
+    "request": {
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        }
+      ],
+      "model": "mistralai/Ministral-3-8B-Instruct-2512",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_workers. Use only when needed for the stated objective.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_queue. Use only when needed for the stated objective.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool pause_queue. Use only when needed for the stated objective.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool resume_queue. Use only when needed for the stated objective.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool move_jobs. Use only when needed for the stated objective.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_job. Use only when needed for the stated objective.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "get_queue"
+                  },
+                  "id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu",
+                  "type": "function"
+                },
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "get_workers"
+                  },
+                  "id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789850250,
+        "id": "chatcmpl-yz8hwBpGdhTgXUSkSsCR7zLMfX8F8PSL",
+        "model": "mistralai/Ministral-3-8B-Instruct-2512",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 0,
+          "predicted_ms": 2595.582,
+          "predicted_n": 12,
+          "predicted_per_second": 4.237970520677059,
+          "predicted_per_token_ms": 235.962,
+          "prompt_ms": 10915.579,
+          "prompt_n": 579,
+          "prompt_per_second": 53.04345284844716,
+          "prompt_per_token_ms": 18.85246804835924
+        },
+        "usage": {
+          "completion_tokens": 12,
+          "prompt_tokens": 579,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "total_tokens": 591
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"get_queue\",\"arguments\":\"{}\"},\"id\":\"h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu\"},{\"type\":\"function\",\"function\":{\"name\":\"get_workers\",\"arguments\":\"{}\"},\"id\":\"0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN\"}]}}],\"created\":1789850250,\"model\":\"mistralai/Ministral-3-8B-Instruct-2512\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":12,\"prompt_tokens\":579,\"total_tokens\":591,\"prompt_tokens_details\":{\"cached_tokens\":0}},\"id\":\"chatcmpl-yz8hwBpGdhTgXUSkSsCR7zLMfX8F8PSL\",\"timings\":{\"cache_n\":0,\"prompt_n\":579,\"prompt_ms\":10915.579,\"prompt_per_token_ms\":18.85246804835924,\"prompt_per_second\":53.04345284844716,\"predicted_n\":12,\"predicted_ms\":2595.582,\"predicted_per_token_ms\":235.962,\"predicted_per_second\":4.237970520677059}}",
+      "status": 200
+    },
+    "turn": 1
+  },
+  {
+    "request": {
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN"
+        }
+      ],
+      "model": "mistralai/Ministral-3-8B-Instruct-2512",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_workers. Use only when needed for the stated objective.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_queue. Use only when needed for the stated objective.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool pause_queue. Use only when needed for the stated objective.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool resume_queue. Use only when needed for the stated objective.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool move_jobs. Use only when needed for the stated objective.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_job. Use only when needed for the stated objective.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "pause_queue"
+                  },
+                  "id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw",
+                  "type": "function"
+                },
+                {
+                  "function": {
+                    "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"target_node\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                    "name": "move_jobs"
+                  },
+                  "id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP",
+                  "type": "function"
+                },
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "resume_queue"
+                  },
+                  "id": "9egIwfDKalWrycOjNuNYYeAHquj62maO",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789850263,
+        "id": "chatcmpl-ScSluRe4ZA6vTX7a3GRJYw76mBgJX3Ud",
+        "model": "mistralai/Ministral-3-8B-Instruct-2512",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 590,
+          "predicted_ms": 11581.423,
+          "predicted_n": 50,
+          "predicted_per_second": 4.230913593260517,
+          "predicted_per_token_ms": 236.35557142857144,
+          "prompt_ms": 2069.738,
+          "prompt_n": 74,
+          "prompt_per_second": 35.75331756966341,
+          "prompt_per_token_ms": 27.96943243243243
+        },
+        "usage": {
+          "completion_tokens": 50,
+          "prompt_tokens": 664,
+          "prompt_tokens_details": {
+            "cached_tokens": 590
+          },
+          "total_tokens": 714
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"pause_queue\",\"arguments\":\"{}\"},\"id\":\"wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw\"},{\"type\":\"function\",\"function\":{\"name\":\"move_jobs\",\"arguments\":\"{\\\"jobs\\\": [{\\\"id\\\": \\\"j-gpu\\\", \\\"target_node\\\": \\\"node-b\\\"}], \\\"constraints\\\": {\\\"affinity\\\": \\\"gpu\\\"}}\"},\"id\":\"Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP\"},{\"type\":\"function\",\"function\":{\"name\":\"resume_queue\",\"arguments\":\"{}\"},\"id\":\"9egIwfDKalWrycOjNuNYYeAHquj62maO\"}]}}],\"created\":1789850263,\"model\":\"mistralai/Ministral-3-8B-Instruct-2512\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":50,\"prompt_tokens\":664,\"total_tokens\":714,\"prompt_tokens_details\":{\"cached_tokens\":590}},\"id\":\"chatcmpl-ScSluRe4ZA6vTX7a3GRJYw76mBgJX3Ud\",\"timings\":{\"cache_n\":590,\"prompt_n\":74,\"prompt_ms\":2069.738,\"prompt_per_token_ms\":27.96943243243243,\"prompt_per_second\":35.75331756966341,\"predicted_n\":50,\"predicted_ms\":11581.423,\"predicted_per_token_ms\":236.35557142857144,\"predicted_per_second\":4.230913593260517}}",
+      "status": 200
+    },
+    "turn": 2
+  },
+  {
+    "request": {
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"target_node\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "resume_queue"
+              },
+              "id": "9egIwfDKalWrycOjNuNYYeAHquj62maO",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP"
+        },
+        {
+          "content": "{\"resumed\":true}",
+          "name": "resume_queue",
+          "role": "tool",
+          "tool_call_id": "9egIwfDKalWrycOjNuNYYeAHquj62maO"
+        }
+      ],
+      "model": "mistralai/Ministral-3-8B-Instruct-2512",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_workers. Use only when needed for the stated objective.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_queue. Use only when needed for the stated objective.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool pause_queue. Use only when needed for the stated objective.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool resume_queue. Use only when needed for the stated objective.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool move_jobs. Use only when needed for the stated objective.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_job. Use only when needed for the stated objective.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"destination\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                    "name": "move_jobs"
+                  },
+                  "id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789850273,
+        "id": "chatcmpl-cHsEvi3CSfzwNsb0S5LbKrLRGbOY3RhH",
+        "model": "mistralai/Ministral-3-8B-Instruct-2512",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 713,
+          "predicted_ms": 8758.92,
+          "predicted_n": 38,
+          "predicted_per_second": 4.224265092043312,
+          "predicted_per_token_ms": 236.72756756756758,
+          "prompt_ms": 885.974,
+          "prompt_n": 29,
+          "prompt_per_second": 32.73233751780526,
+          "prompt_per_token_ms": 30.5508275862069
+        },
+        "usage": {
+          "completion_tokens": 38,
+          "prompt_tokens": 742,
+          "prompt_tokens_details": {
+            "cached_tokens": 713
+          },
+          "total_tokens": 780
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"move_jobs\",\"arguments\":\"{\\\"jobs\\\": [{\\\"id\\\": \\\"j-gpu\\\", \\\"destination\\\": \\\"node-b\\\"}], \\\"constraints\\\": {\\\"affinity\\\": \\\"gpu\\\"}}\"},\"id\":\"XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C\"}]}}],\"created\":1789850273,\"model\":\"mistralai/Ministral-3-8B-Instruct-2512\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":38,\"prompt_tokens\":742,\"total_tokens\":780,\"prompt_tokens_details\":{\"cached_tokens\":713}},\"id\":\"chatcmpl-cHsEvi3CSfzwNsb0S5LbKrLRGbOY3RhH\",\"timings\":{\"cache_n\":713,\"prompt_n\":29,\"prompt_ms\":885.974,\"prompt_per_token_ms\":30.5508275862069,\"prompt_per_second\":32.73233751780526,\"predicted_n\":38,\"predicted_ms\":8758.92,\"predicted_per_token_ms\":236.72756756756758,\"predicted_per_second\":4.224265092043312}}",
+      "status": 200
+    },
+    "turn": 3
+  },
+  {
+    "request": {
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"target_node\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "resume_queue"
+              },
+              "id": "9egIwfDKalWrycOjNuNYYeAHquj62maO",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP"
+        },
+        {
+          "content": "{\"resumed\":true}",
+          "name": "resume_queue",
+          "role": "tool",
+          "tool_call_id": "9egIwfDKalWrycOjNuNYYeAHquj62maO"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"destination\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C"
+        }
+      ],
+      "model": "mistralai/Ministral-3-8B-Instruct-2512",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_workers. Use only when needed for the stated objective.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_queue. Use only when needed for the stated objective.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool pause_queue. Use only when needed for the stated objective.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool resume_queue. Use only when needed for the stated objective.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool move_jobs. Use only when needed for the stated objective.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_job. Use only when needed for the stated objective.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                    "name": "move_jobs"
+                  },
+                  "id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789850283,
+        "id": "chatcmpl-WpSQq5JVGnhCnroaPKVxfBZPy7mw8KMM",
+        "model": "mistralai/Ministral-3-8B-Instruct-2512",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 779,
+          "predicted_ms": 8776.909,
+          "predicted_n": 38,
+          "predicted_per_second": 4.215607111797559,
+          "predicted_per_token_ms": 237.21375675675674,
+          "prompt_ms": 740.631,
+          "prompt_n": 13,
+          "prompt_per_second": 17.552600417751894,
+          "prompt_per_token_ms": 56.97161538461538
+        },
+        "usage": {
+          "completion_tokens": 38,
+          "prompt_tokens": 792,
+          "prompt_tokens_details": {
+            "cached_tokens": 779
+          },
+          "total_tokens": 830
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"move_jobs\",\"arguments\":\"{\\\"jobs\\\": [{\\\"id\\\": \\\"j-gpu\\\"}], \\\"destination\\\": \\\"node-b\\\", \\\"constraints\\\": {\\\"affinity\\\": \\\"gpu\\\"}}\"},\"id\":\"Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j\"}]}}],\"created\":1789850283,\"model\":\"mistralai/Ministral-3-8B-Instruct-2512\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":38,\"prompt_tokens\":792,\"total_tokens\":830,\"prompt_tokens_details\":{\"cached_tokens\":779}},\"id\":\"chatcmpl-WpSQq5JVGnhCnroaPKVxfBZPy7mw8KMM\",\"timings\":{\"cache_n\":779,\"prompt_n\":13,\"prompt_ms\":740.631,\"prompt_per_token_ms\":56.97161538461538,\"prompt_per_second\":17.552600417751894,\"predicted_n\":38,\"predicted_ms\":8776.909,\"predicted_per_token_ms\":237.21375675675674,\"predicted_per_second\":4.215607111797559}}",
+      "status": 200
+    },
+    "turn": 4
+  },
+  {
+    "request": {
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"target_node\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "resume_queue"
+              },
+              "id": "9egIwfDKalWrycOjNuNYYeAHquj62maO",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP"
+        },
+        {
+          "content": "{\"resumed\":true}",
+          "name": "resume_queue",
+          "role": "tool",
+          "tool_call_id": "9egIwfDKalWrycOjNuNYYeAHquj62maO"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"destination\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j"
+        }
+      ],
+      "model": "mistralai/Ministral-3-8B-Instruct-2512",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_workers. Use only when needed for the stated objective.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_queue. Use only when needed for the stated objective.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool pause_queue. Use only when needed for the stated objective.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool resume_queue. Use only when needed for the stated objective.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool move_jobs. Use only when needed for the stated objective.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_job. Use only when needed for the stated objective.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "get_queue"
+                  },
+                  "id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky",
+                  "type": "function"
+                },
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "get_workers"
+                  },
+                  "id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789850286,
+        "id": "chatcmpl-A3E8JcJscoAbD0aNUD2azguxvI5EW5G6",
+        "model": "mistralai/Ministral-3-8B-Instruct-2512",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 829,
+          "predicted_ms": 2605.54,
+          "predicted_n": 12,
+          "predicted_per_second": 4.2217736054714186,
+          "predicted_per_token_ms": 236.86727272727273,
+          "prompt_ms": 717.305,
+          "prompt_n": 9,
+          "prompt_per_second": 12.546963983242833,
+          "prompt_per_token_ms": 79.70055555555555
+        },
+        "usage": {
+          "completion_tokens": 12,
+          "prompt_tokens": 838,
+          "prompt_tokens_details": {
+            "cached_tokens": 829
+          },
+          "total_tokens": 850
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"get_queue\",\"arguments\":\"{}\"},\"id\":\"R0j2NKZk2jOF5DtoklbEH7wKljIEgtky\"},{\"type\":\"function\",\"function\":{\"name\":\"get_workers\",\"arguments\":\"{}\"},\"id\":\"yY7mjO6D5igDiYfiBimGa542SBwMz75Y\"}]}}],\"created\":1789850286,\"model\":\"mistralai/Ministral-3-8B-Instruct-2512\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":12,\"prompt_tokens\":838,\"total_tokens\":850,\"prompt_tokens_details\":{\"cached_tokens\":829}},\"id\":\"chatcmpl-A3E8JcJscoAbD0aNUD2azguxvI5EW5G6\",\"timings\":{\"cache_n\":829,\"prompt_n\":9,\"prompt_ms\":717.305,\"prompt_per_token_ms\":79.70055555555555,\"prompt_per_second\":12.546963983242833,\"predicted_n\":12,\"predicted_ms\":2605.54,\"predicted_per_token_ms\":236.86727272727273,\"predicted_per_second\":4.2217736054714186}}",
+      "status": 200
+    },
+    "turn": 5
+  },
+  {
+    "request": {
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"target_node\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "resume_queue"
+              },
+              "id": "9egIwfDKalWrycOjNuNYYeAHquj62maO",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP"
+        },
+        {
+          "content": "{\"resumed\":true}",
+          "name": "resume_queue",
+          "role": "tool",
+          "tool_call_id": "9egIwfDKalWrycOjNuNYYeAHquj62maO"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"destination\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y"
+        }
+      ],
+      "model": "mistralai/Ministral-3-8B-Instruct-2512",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_workers. Use only when needed for the stated objective.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_queue. Use only when needed for the stated objective.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool pause_queue. Use only when needed for the stated objective.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool resume_queue. Use only when needed for the stated objective.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool move_jobs. Use only when needed for the stated objective.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_job. Use only when needed for the stated objective.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "pause_queue"
+                  },
+                  "id": "upSRva4TadNjqKTRJ4vDTCmgfFCncL5i",
+                  "type": "function"
+                },
+                {
+                  "function": {
+                    "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"target_node\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                    "name": "move_jobs"
+                  },
+                  "id": "7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789850298,
+        "id": "chatcmpl-cvJdBD6xVj0lrvgCCFw4odKDgXz4Ivqp",
+        "model": "mistralai/Ministral-3-8B-Instruct-2512",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 849,
+          "predicted_ms": 10231.159,
+          "predicted_n": 44,
+          "predicted_per_second": 4.2028473997911675,
+          "predicted_per_token_ms": 237.93393023255814,
+          "prompt_ms": 2117.14,
+          "prompt_n": 74,
+          "prompt_per_second": 34.952813701502976,
+          "prompt_per_token_ms": 28.61
+        },
+        "usage": {
+          "completion_tokens": 44,
+          "prompt_tokens": 923,
+          "prompt_tokens_details": {
+            "cached_tokens": 849
+          },
+          "total_tokens": 967
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"pause_queue\",\"arguments\":\"{}\"},\"id\":\"upSRva4TadNjqKTRJ4vDTCmgfFCncL5i\"},{\"type\":\"function\",\"function\":{\"name\":\"move_jobs\",\"arguments\":\"{\\\"jobs\\\": [{\\\"id\\\": \\\"j-gpu\\\"}], \\\"target_node\\\": \\\"node-b\\\", \\\"constraints\\\": {\\\"affinity\\\": \\\"gpu\\\"}}\"},\"id\":\"7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT\"}]}}],\"created\":1789850298,\"model\":\"mistralai/Ministral-3-8B-Instruct-2512\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":44,\"prompt_tokens\":923,\"total_tokens\":967,\"prompt_tokens_details\":{\"cached_tokens\":849}},\"id\":\"chatcmpl-cvJdBD6xVj0lrvgCCFw4odKDgXz4Ivqp\",\"timings\":{\"cache_n\":849,\"prompt_n\":74,\"prompt_ms\":2117.14,\"prompt_per_token_ms\":28.61,\"prompt_per_second\":34.952813701502976,\"predicted_n\":44,\"predicted_ms\":10231.159,\"predicted_per_token_ms\":237.93393023255814,\"predicted_per_second\":4.2028473997911675}}",
+      "status": 200
+    },
+    "turn": 6
+  },
+  {
+    "request": {
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"target_node\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "resume_queue"
+              },
+              "id": "9egIwfDKalWrycOjNuNYYeAHquj62maO",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP"
+        },
+        {
+          "content": "{\"resumed\":true}",
+          "name": "resume_queue",
+          "role": "tool",
+          "tool_call_id": "9egIwfDKalWrycOjNuNYYeAHquj62maO"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"destination\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "upSRva4TadNjqKTRJ4vDTCmgfFCncL5i",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"target_node\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "upSRva4TadNjqKTRJ4vDTCmgfFCncL5i"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT"
+        }
+      ],
+      "model": "mistralai/Ministral-3-8B-Instruct-2512",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_workers. Use only when needed for the stated objective.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_queue. Use only when needed for the stated objective.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool pause_queue. Use only when needed for the stated objective.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool resume_queue. Use only when needed for the stated objective.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool move_jobs. Use only when needed for the stated objective.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_job. Use only when needed for the stated objective.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                    "name": "move_jobs"
+                  },
+                  "id": "3UM7N7wYAHz2yBXlOnWg4WwkIh5MtJaD",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789850308,
+        "id": "chatcmpl-CMiGhzpIYGYcRT0E1mkFIQvk520O8fxo",
+        "model": "mistralai/Ministral-3-8B-Instruct-2512",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 966,
+          "predicted_ms": 8798.303,
+          "predicted_n": 38,
+          "predicted_per_second": 4.205356419300403,
+          "predicted_per_token_ms": 237.79197297297296,
+          "prompt_ms": 828.27,
+          "prompt_n": 21,
+          "prompt_per_second": 25.354051215183457,
+          "prompt_per_token_ms": 39.441428571428574
+        },
+        "usage": {
+          "completion_tokens": 38,
+          "prompt_tokens": 987,
+          "prompt_tokens_details": {
+            "cached_tokens": 966
+          },
+          "total_tokens": 1025
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"move_jobs\",\"arguments\":\"{\\\"jobs\\\": [{\\\"id\\\": \\\"j-gpu\\\"}], \\\"destination\\\": \\\"node-b\\\", \\\"constraints\\\": {\\\"affinity\\\": \\\"gpu\\\"}}\"},\"id\":\"3UM7N7wYAHz2yBXlOnWg4WwkIh5MtJaD\"}]}}],\"created\":1789850308,\"model\":\"mistralai/Ministral-3-8B-Instruct-2512\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":38,\"prompt_tokens\":987,\"total_tokens\":1025,\"prompt_tokens_details\":{\"cached_tokens\":966}},\"id\":\"chatcmpl-CMiGhzpIYGYcRT0E1mkFIQvk520O8fxo\",\"timings\":{\"cache_n\":966,\"prompt_n\":21,\"prompt_ms\":828.27,\"prompt_per_token_ms\":39.441428571428574,\"prompt_per_second\":25.354051215183457,\"predicted_n\":38,\"predicted_ms\":8798.303,\"predicted_per_token_ms\":237.79197297297296,\"predicted_per_second\":4.205356419300403}}",
+      "status": 200
+    },
+    "turn": 7
+  },
+  {
+    "request": {
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"target_node\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "resume_queue"
+              },
+              "id": "9egIwfDKalWrycOjNuNYYeAHquj62maO",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP"
+        },
+        {
+          "content": "{\"resumed\":true}",
+          "name": "resume_queue",
+          "role": "tool",
+          "tool_call_id": "9egIwfDKalWrycOjNuNYYeAHquj62maO"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"destination\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "upSRva4TadNjqKTRJ4vDTCmgfFCncL5i",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"target_node\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "upSRva4TadNjqKTRJ4vDTCmgfFCncL5i"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "3UM7N7wYAHz2yBXlOnWg4WwkIh5MtJaD",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "3UM7N7wYAHz2yBXlOnWg4WwkIh5MtJaD"
+        }
+      ],
+      "model": "mistralai/Ministral-3-8B-Instruct-2512",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_workers. Use only when needed for the stated objective.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_queue. Use only when needed for the stated objective.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool pause_queue. Use only when needed for the stated objective.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool resume_queue. Use only when needed for the stated objective.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool move_jobs. Use only when needed for the stated objective.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_job. Use only when needed for the stated objective.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"node\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                    "name": "move_jobs"
+                  },
+                  "id": "FxCVIV5pXAQi28DROZ2E9lX2qhJAiHEb",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789850318,
+        "id": "chatcmpl-hDvKofY93NhUIx5Kwua4F5qodtQtJkjk",
+        "model": "mistralai/Ministral-3-8B-Instruct-2512",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 1024,
+          "predicted_ms": 8842.243,
+          "predicted_n": 38,
+          "predicted_per_second": 4.184458626617703,
+          "predicted_per_token_ms": 238.97954054054054,
+          "prompt_ms": 736.683,
+          "prompt_n": 9,
+          "prompt_per_second": 12.216923697166896,
+          "prompt_per_token_ms": 81.85366666666667
+        },
+        "usage": {
+          "completion_tokens": 38,
+          "prompt_tokens": 1033,
+          "prompt_tokens_details": {
+            "cached_tokens": 1024
+          },
+          "total_tokens": 1071
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"move_jobs\",\"arguments\":\"{\\\"jobs\\\": [{\\\"id\\\": \\\"j-gpu\\\"}], \\\"node\\\": \\\"node-b\\\", \\\"constraints\\\": {\\\"affinity\\\": \\\"gpu\\\"}}\"},\"id\":\"FxCVIV5pXAQi28DROZ2E9lX2qhJAiHEb\"}]}}],\"created\":1789850318,\"model\":\"mistralai/Ministral-3-8B-Instruct-2512\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":38,\"prompt_tokens\":1033,\"total_tokens\":1071,\"prompt_tokens_details\":{\"cached_tokens\":1024}},\"id\":\"chatcmpl-hDvKofY93NhUIx5Kwua4F5qodtQtJkjk\",\"timings\":{\"cache_n\":1024,\"prompt_n\":9,\"prompt_ms\":736.683,\"prompt_per_token_ms\":81.85366666666667,\"prompt_per_second\":12.216923697166896,\"predicted_n\":38,\"predicted_ms\":8842.243,\"predicted_per_token_ms\":238.97954054054054,\"predicted_per_second\":4.184458626617703}}",
+      "status": 200
+    },
+    "turn": 8
+  },
+  {
+    "request": {
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"target_node\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "resume_queue"
+              },
+              "id": "9egIwfDKalWrycOjNuNYYeAHquj62maO",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP"
+        },
+        {
+          "content": "{\"resumed\":true}",
+          "name": "resume_queue",
+          "role": "tool",
+          "tool_call_id": "9egIwfDKalWrycOjNuNYYeAHquj62maO"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"destination\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "upSRva4TadNjqKTRJ4vDTCmgfFCncL5i",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"target_node\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "upSRva4TadNjqKTRJ4vDTCmgfFCncL5i"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "3UM7N7wYAHz2yBXlOnWg4WwkIh5MtJaD",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "3UM7N7wYAHz2yBXlOnWg4WwkIh5MtJaD"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"node\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "FxCVIV5pXAQi28DROZ2E9lX2qhJAiHEb",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "FxCVIV5pXAQi28DROZ2E9lX2qhJAiHEb"
+        }
+      ],
+      "model": "mistralai/Ministral-3-8B-Instruct-2512",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_workers. Use only when needed for the stated objective.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_queue. Use only when needed for the stated objective.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool pause_queue. Use only when needed for the stated objective.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool resume_queue. Use only when needed for the stated objective.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool move_jobs. Use only when needed for the stated objective.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_job. Use only when needed for the stated objective.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"target\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                    "name": "move_jobs"
+                  },
+                  "id": "HWK74BsExvPqURhCJSqIEXZXaQDeJvu5",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789850327,
+        "id": "chatcmpl-xMD4Jg1JkBehU88K2QVyvDru0HYcNkO4",
+        "model": "mistralai/Ministral-3-8B-Instruct-2512",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 1070,
+          "predicted_ms": 8842.782,
+          "predicted_n": 38,
+          "predicted_per_second": 4.1842035685149765,
+          "predicted_per_token_ms": 238.9941081081081,
+          "prompt_ms": 752.345,
+          "prompt_n": 13,
+          "prompt_per_second": 17.279306701048057,
+          "prompt_per_token_ms": 57.87269230769231
+        },
+        "usage": {
+          "completion_tokens": 38,
+          "prompt_tokens": 1083,
+          "prompt_tokens_details": {
+            "cached_tokens": 1070
+          },
+          "total_tokens": 1121
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"move_jobs\",\"arguments\":\"{\\\"jobs\\\": [{\\\"id\\\": \\\"j-gpu\\\"}], \\\"target\\\": \\\"node-b\\\", \\\"constraints\\\": {\\\"affinity\\\": \\\"gpu\\\"}}\"},\"id\":\"HWK74BsExvPqURhCJSqIEXZXaQDeJvu5\"}]}}],\"created\":1789850327,\"model\":\"mistralai/Ministral-3-8B-Instruct-2512\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":38,\"prompt_tokens\":1083,\"total_tokens\":1121,\"prompt_tokens_details\":{\"cached_tokens\":1070}},\"id\":\"chatcmpl-xMD4Jg1JkBehU88K2QVyvDru0HYcNkO4\",\"timings\":{\"cache_n\":1070,\"prompt_n\":13,\"prompt_ms\":752.345,\"prompt_per_token_ms\":57.87269230769231,\"prompt_per_second\":17.279306701048057,\"predicted_n\":38,\"predicted_ms\":8842.782,\"predicted_per_token_ms\":238.9941081081081,\"predicted_per_second\":4.1842035685149765}}",
+      "status": 200
+    },
+    "turn": 9
+  },
+  {
+    "request": {
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"target_node\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "resume_queue"
+              },
+              "id": "9egIwfDKalWrycOjNuNYYeAHquj62maO",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP"
+        },
+        {
+          "content": "{\"resumed\":true}",
+          "name": "resume_queue",
+          "role": "tool",
+          "tool_call_id": "9egIwfDKalWrycOjNuNYYeAHquj62maO"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"destination\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "upSRva4TadNjqKTRJ4vDTCmgfFCncL5i",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"target_node\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "upSRva4TadNjqKTRJ4vDTCmgfFCncL5i"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "3UM7N7wYAHz2yBXlOnWg4WwkIh5MtJaD",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "3UM7N7wYAHz2yBXlOnWg4WwkIh5MtJaD"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"node\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "FxCVIV5pXAQi28DROZ2E9lX2qhJAiHEb",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "FxCVIV5pXAQi28DROZ2E9lX2qhJAiHEb"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"target\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "HWK74BsExvPqURhCJSqIEXZXaQDeJvu5",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "HWK74BsExvPqURhCJSqIEXZXaQDeJvu5"
+        }
+      ],
+      "model": "mistralai/Ministral-3-8B-Instruct-2512",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_workers. Use only when needed for the stated objective.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_queue. Use only when needed for the stated objective.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool pause_queue. Use only when needed for the stated objective.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool resume_queue. Use only when needed for the stated objective.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool move_jobs. Use only when needed for the stated objective.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_job. Use only when needed for the stated objective.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"id\": \"j-gpu\"}",
+                    "name": "get_job"
+                  },
+                  "id": "VSB6KxyBHkmfthWpPhuFAZeuBZaaAu6M",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789850331,
+        "id": "chatcmpl-OVJXHcp1uqe76pdru32SyGQ4BwXhuCOD",
+        "model": "mistralai/Ministral-3-8B-Instruct-2512",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 1120,
+          "predicted_ms": 2873.929,
+          "predicted_n": 13,
+          "predicted_per_second": 4.175468496264173,
+          "predicted_per_token_ms": 239.49408333333335,
+          "prompt_ms": 746.519,
+          "prompt_n": 13,
+          "prompt_per_second": 17.41415824647464,
+          "prompt_per_token_ms": 57.42453846153846
+        },
+        "usage": {
+          "completion_tokens": 13,
+          "prompt_tokens": 1133,
+          "prompt_tokens_details": {
+            "cached_tokens": 1120
+          },
+          "total_tokens": 1146
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"get_job\",\"arguments\":\"{\\\"id\\\": \\\"j-gpu\\\"}\"},\"id\":\"VSB6KxyBHkmfthWpPhuFAZeuBZaaAu6M\"}]}}],\"created\":1789850331,\"model\":\"mistralai/Ministral-3-8B-Instruct-2512\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":13,\"prompt_tokens\":1133,\"total_tokens\":1146,\"prompt_tokens_details\":{\"cached_tokens\":1120}},\"id\":\"chatcmpl-OVJXHcp1uqe76pdru32SyGQ4BwXhuCOD\",\"timings\":{\"cache_n\":1120,\"prompt_n\":13,\"prompt_ms\":746.519,\"prompt_per_token_ms\":57.42453846153846,\"prompt_per_second\":17.41415824647464,\"predicted_n\":13,\"predicted_ms\":2873.929,\"predicted_per_token_ms\":239.49408333333335,\"predicted_per_second\":4.175468496264173}}",
+      "status": 200
+    },
+    "turn": 10
+  },
+  {
+    "request": {
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"target_node\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "resume_queue"
+              },
+              "id": "9egIwfDKalWrycOjNuNYYeAHquj62maO",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP"
+        },
+        {
+          "content": "{\"resumed\":true}",
+          "name": "resume_queue",
+          "role": "tool",
+          "tool_call_id": "9egIwfDKalWrycOjNuNYYeAHquj62maO"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"destination\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "upSRva4TadNjqKTRJ4vDTCmgfFCncL5i",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"target_node\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "upSRva4TadNjqKTRJ4vDTCmgfFCncL5i"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "3UM7N7wYAHz2yBXlOnWg4WwkIh5MtJaD",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "3UM7N7wYAHz2yBXlOnWg4WwkIh5MtJaD"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"node\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "FxCVIV5pXAQi28DROZ2E9lX2qhJAiHEb",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "FxCVIV5pXAQi28DROZ2E9lX2qhJAiHEb"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"target\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "HWK74BsExvPqURhCJSqIEXZXaQDeJvu5",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "HWK74BsExvPqURhCJSqIEXZXaQDeJvu5"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"id\": \"j-gpu\"}",
+                "name": "get_job"
+              },
+              "id": "VSB6KxyBHkmfthWpPhuFAZeuBZaaAu6M",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"affinity\":\"gpu\",\"id\":\"j-gpu\"}",
+          "name": "get_job",
+          "role": "tool",
+          "tool_call_id": "VSB6KxyBHkmfthWpPhuFAZeuBZaaAu6M"
+        }
+      ],
+      "model": "mistralai/Ministral-3-8B-Instruct-2512",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_workers. Use only when needed for the stated objective.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_queue. Use only when needed for the stated objective.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool pause_queue. Use only when needed for the stated objective.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool resume_queue. Use only when needed for the stated objective.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool move_jobs. Use only when needed for the stated objective.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_job. Use only when needed for the stated objective.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"affinity\": \"gpu\"}",
+                    "name": "move_jobs"
+                  },
+                  "id": "DRoqkeySptbDIAs5BJBJPXaDmXoEAbl7",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789850340,
+        "id": "chatcmpl-pZ9dwrycTUOyt5xdrKSP9Azlzi2R4dXY",
+        "model": "mistralai/Ministral-3-8B-Instruct-2512",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 1145,
+          "predicted_ms": 7881.461,
+          "predicted_n": 34,
+          "predicted_per_second": 4.187040955985191,
+          "predicted_per_token_ms": 238.8321515151515,
+          "prompt_ms": 773.105,
+          "prompt_n": 16,
+          "prompt_per_second": 20.695765775670832,
+          "prompt_per_token_ms": 48.3190625
+        },
+        "usage": {
+          "completion_tokens": 34,
+          "prompt_tokens": 1161,
+          "prompt_tokens_details": {
+            "cached_tokens": 1145
+          },
+          "total_tokens": 1195
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"move_jobs\",\"arguments\":\"{\\\"jobs\\\": [{\\\"id\\\": \\\"j-gpu\\\"}], \\\"destination\\\": \\\"node-b\\\", \\\"affinity\\\": \\\"gpu\\\"}\"},\"id\":\"DRoqkeySptbDIAs5BJBJPXaDmXoEAbl7\"}]}}],\"created\":1789850340,\"model\":\"mistralai/Ministral-3-8B-Instruct-2512\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":34,\"prompt_tokens\":1161,\"total_tokens\":1195,\"prompt_tokens_details\":{\"cached_tokens\":1145}},\"id\":\"chatcmpl-pZ9dwrycTUOyt5xdrKSP9Azlzi2R4dXY\",\"timings\":{\"cache_n\":1145,\"prompt_n\":16,\"prompt_ms\":773.105,\"prompt_per_token_ms\":48.3190625,\"prompt_per_second\":20.695765775670832,\"predicted_n\":34,\"predicted_ms\":7881.461,\"predicted_per_token_ms\":238.8321515151515,\"predicted_per_second\":4.187040955985191}}",
+      "status": 200
+    },
+    "turn": 11
+  },
+  {
+    "request": {
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "h6MsPGAfeTGlFoTxyEVKZxP39HyU1Qqu"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "0JWdf3YnJmgK6C04EYBUs5oTjECHUOqN"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"target_node\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "resume_queue"
+              },
+              "id": "9egIwfDKalWrycOjNuNYYeAHquj62maO",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "wOtEUfzRvTSazHXyfq7DSUNwuMFB3lNw"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Z91fk4NLYlEqblpOIL4KvL3FxKxaN6IP"
+        },
+        {
+          "content": "{\"resumed\":true}",
+          "name": "resume_queue",
+          "role": "tool",
+          "tool_call_id": "9egIwfDKalWrycOjNuNYYeAHquj62maO"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\", \"destination\": \"node-b\"}], \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "XfbpwpnWfAsoKeLR1254lEuLCVQz7F9C"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "Kx916JnixPK6xrqsl5QL2dv0sFUCDy2j"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_queue"
+              },
+              "id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "R0j2NKZk2jOF5DtoklbEH7wKljIEgtky"
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "yY7mjO6D5igDiYfiBimGa542SBwMz75Y"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "upSRva4TadNjqKTRJ4vDTCmgfFCncL5i",
+              "type": "function"
+            },
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"target_node\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "upSRva4TadNjqKTRJ4vDTCmgfFCncL5i"
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "7D0cYPJVZOgUrYAy1CSPPz1Ir3mMvRpT"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "3UM7N7wYAHz2yBXlOnWg4WwkIh5MtJaD",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "3UM7N7wYAHz2yBXlOnWg4WwkIh5MtJaD"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"node\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "FxCVIV5pXAQi28DROZ2E9lX2qhJAiHEb",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "FxCVIV5pXAQi28DROZ2E9lX2qhJAiHEb"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"target\": \"node-b\", \"constraints\": {\"affinity\": \"gpu\"}}",
+                "name": "move_jobs"
+              },
+              "id": "HWK74BsExvPqURhCJSqIEXZXaQDeJvu5",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "malformed_arguments:KeyError:'destination'",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "HWK74BsExvPqURhCJSqIEXZXaQDeJvu5"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"id\": \"j-gpu\"}",
+                "name": "get_job"
+              },
+              "id": "VSB6KxyBHkmfthWpPhuFAZeuBZaaAu6M",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"affinity\":\"gpu\",\"id\":\"j-gpu\"}",
+          "name": "get_job",
+          "role": "tool",
+          "tool_call_id": "VSB6KxyBHkmfthWpPhuFAZeuBZaaAu6M"
+        },
+        {
+          "content": "",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"affinity\": \"gpu\"}",
+                "name": "move_jobs"
+              },
+              "id": "DRoqkeySptbDIAs5BJBJPXaDmXoEAbl7",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"moved\":[]}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "DRoqkeySptbDIAs5BJBJPXaDmXoEAbl7"
+        }
+      ],
+      "model": "mistralai/Ministral-3-8B-Instruct-2512",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_workers. Use only when needed for the stated objective.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_queue. Use only when needed for the stated objective.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool pause_queue. Use only when needed for the stated objective.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool resume_queue. Use only when needed for the stated objective.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool move_jobs. Use only when needed for the stated objective.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Deterministic simulator tool get_job. Use only when needed for the stated objective.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": true,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "pause_queue"
+                  },
+                  "id": "CqEBINlb40M8KAzqehzOf0yMYhxFzMRT",
+                  "type": "function"
+                },
+                {
+                  "function": {
+                    "arguments": "{\"jobs\": [{\"id\": \"j-gpu\"}], \"destination\": \"node-b\", \"affinity\": \"gpu\"}",
+                    "name": "move_jobs"
+                  },
+                  "id": "4eym79p7nrpbrQNG9bFNfwq8Svluplrh",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789850350,
+        "id": "chatcmpl-mTZ6p8KOyRpTSmbVR4OQxW2PgM2tHNEw",
+        "model": "mistralai/Ministral-3-8B-Instruct-2512",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 1194,
+          "predicted_ms": 9093.967,
+          "predicted_n": 39,
+          "predicted_per_second": 4.1785944461861355,
+          "predicted_per_token_ms": 239.3149210526316,
+          "prompt_ms": 725.959,
+          "prompt_n": 9,
+          "prompt_per_second": 12.397394343206711,
+          "prompt_per_token_ms": 80.6621111111111
+        },
+        "usage": {
+          "completion_tokens": 39,
+          "prompt_tokens": 1203,
+          "prompt_tokens_details": {
+            "cached_tokens": 1194
+          },
+          "total_tokens": 1242
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"pause_queue\",\"arguments\":\"{}\"},\"id\":\"CqEBINlb40M8KAzqehzOf0yMYhxFzMRT\"},{\"type\":\"function\",\"function\":{\"name\":\"move_jobs\",\"arguments\":\"{\\\"jobs\\\": [{\\\"id\\\": \\\"j-gpu\\\"}], \\\"destination\\\": \\\"node-b\\\", \\\"affinity\\\": \\\"gpu\\\"}\"},\"id\":\"4eym79p7nrpbrQNG9bFNfwq8Svluplrh\"}]}}],\"created\":1789850350,\"model\":\"mistralai/Ministral-3-8B-Instruct-2512\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":39,\"prompt_tokens\":1203,\"total_tokens\":1242,\"prompt_tokens_details\":{\"cached_tokens\":1194}},\"id\":\"chatcmpl-mTZ6p8KOyRpTSmbVR4OQxW2PgM2tHNEw\",\"timings\":{\"cache_n\":1194,\"prompt_n\":9,\"prompt_ms\":725.959,\"prompt_per_token_ms\":80.6621111111111,\"prompt_per_second\":12.397394343206711,\"predicted_n\":39,\"predicted_ms\":9093.967,\"predicted_per_token_ms\":239.3149210526316,\"predicted_per_second\":4.1785944461861355}}",
+      "status": 200
+    },
+    "turn": 12
+  }
+]

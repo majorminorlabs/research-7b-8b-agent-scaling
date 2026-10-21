@@ -51,4 +51,6 @@ MAJOR//minor, *3B/4B → 7B/8B sibling-scaling study*, canonical source commit `
 
 Tier 1 evidence added after the tagged release (2026-10-20): [source, protocols, historical audits and small run records](supplements/tier1-20261020/README.md).
 
-Plans, handoffs and drafts live in _private/ and are never published.
+Plans, handoffs and drafts live in a local _private/ folder that is never published.
+
+Supplementary raw run records added Oct 2026; tagged releases unchanged

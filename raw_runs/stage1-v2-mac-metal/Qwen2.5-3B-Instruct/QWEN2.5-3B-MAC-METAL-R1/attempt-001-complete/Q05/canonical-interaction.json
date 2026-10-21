@@ -1,0 +1,135 @@
+[
+  {
+    "assistant": {
+      "content": "",
+      "role": "assistant",
+      "tool_calls": [
+        {
+          "function": {
+            "arguments": "{\"worker\": \"node-a\"}",
+            "name": "get_queue"
+          },
+          "id": "l7yGV6YHjbBzpmEWcGnxzSJlan4hq890",
+          "type": "function"
+        }
+      ]
+    },
+    "elapsed_s": 1.058568583000124,
+    "finish_reason": "tool_calls",
+    "turn": 1
+  },
+  {
+    "assistant": {
+      "content": "",
+      "role": "assistant",
+      "tool_calls": [
+        {
+          "function": {
+            "arguments": "{}",
+            "name": "get_workers"
+          },
+          "id": "sGx1z1CzydtaIcl13OsJ97gJ4hwP7hud",
+          "type": "function"
+        }
+      ]
+    },
+    "elapsed_s": 0.2882849999996324,
+    "finish_reason": "tool_calls",
+    "turn": 2
+  },
+  {
+    "assistant": {
+      "content": "The node-a has a GPU affinity job \"j-gpu\" and a CPU affinity job \"j-cpu\". Node-a's load is 96, which is above the 90 threshold. Node-b has a GPU affinity job and a load of 91, and node-c has a CPU affinity job and a load of 39. We can proceed with moving the job from node-a to node-b or node-c. Let's move the job \"j-gpu\" to node-b.\n",
+      "role": "assistant",
+      "tool_calls": [
+        {
+          "function": {
+            "arguments": "{\"ids\": [\"j-gpu\"], \"destination\": \"node-b\"}",
+            "name": "move_jobs"
+          },
+          "id": "lmDUefsM92U0SaXfE3AhZoJA4GLyozn7",
+          "type": "function"
+        }
+      ]
+    },
+    "elapsed_s": 1.771455541999785,
+    "finish_reason": "tool_calls",
+    "turn": 3
+  },
+  {
+    "assistant": {
+      "content": "The source queue on node-a must be paused before moving jobs. Let's pause the queue on node-a first.\n\n",
+      "role": "assistant",
+      "tool_calls": [
+        {
+          "function": {
+            "arguments": "{}",
+            "name": "pause_queue"
+          },
+          "id": "cKN7TXsf76hYHQHt4GUV5myo5DAQ9gM3",
+          "type": "function"
+        }
+      ]
+    },
+    "elapsed_s": 0.5835222499999873,
+    "finish_reason": "tool_calls",
+    "turn": 4
+  },
+  {
+    "assistant": {
+      "content": "The queue on node-a has been paused successfully. Now we can proceed with moving the job \"j-gpu\" to node-b.\n\n",
+      "role": "assistant",
+      "tool_calls": [
+        {
+          "function": {
+            "arguments": "{\"ids\": [\"j-gpu\"], \"destination\": \"node-b\"}",
+            "name": "move_jobs"
+          },
+          "id": "TFJYv6qdRqRArOCxFQ3X11oJMF97J4Sw",
+          "type": "function"
+        }
+      ]
+    },
+    "elapsed_s": 0.7845233749999352,
+    "finish_reason": "tool_calls",
+    "turn": 5
+  },
+  {
+    "assistant": {
+      "content": "The destination node-b is currently at a load of 91, which is above the 90 threshold. We need to find an available node with a lower load. Let's check the worker loads again to find an available node.\n\n",
+      "role": "assistant",
+      "tool_calls": [
+        {
+          "function": {
+            "arguments": "{}",
+            "name": "get_workers"
+          },
+          "id": "nh2LSrSdbTwxYCQMQXkBqIZYcYMcbMNf",
+          "type": "function"
+        }
+      ]
+    },
+    "elapsed_s": 0.8944484999997258,
+    "finish_reason": "tool_calls",
+    "turn": 6
+  },
+  {
+    "assistant": {
+      "content": "The worker loads are as follows: Node-a has a load of 96, Node-b has a load of 91, and Node-c has a load of 39. Node-b is still above the threshold, but Node-c is available and has a lower load. We can move the job \"j-gpu\" to Node-c.\n\n",
+      "role": "assistant",
+      "tool_calls": [
+        {
+          "function": {
+            "arguments": "{\"ids\": [\"j-gpu\"], \"destination\": \"node-c\"}",
+            "name": "move_jobs"
+          },
+          "id": "zeGMNHAtN44spka0FveXCoDJlIXNoVeJ",
+          "type": "function"
+        }
+      ]
+    },
+    "elapsed_s": 1.386203999999907,
+    "finish_reason": "tool_calls",
+    "turn": 7
+  }
+]

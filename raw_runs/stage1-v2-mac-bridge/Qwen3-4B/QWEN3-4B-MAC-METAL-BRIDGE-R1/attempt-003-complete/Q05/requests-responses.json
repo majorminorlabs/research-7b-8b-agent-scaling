@@ -1,0 +1,1717 @@
+[
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        }
+      ],
+      "model": "Qwen3-4B",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Return current worker loads and GPU capability. Refresh after get_queue before moving jobs.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one worker queue. First inspection changes worker loads; inspect workers again afterward.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "worker": {
+                  "enum": [
+                    "node-a",
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Pause source queue before moving jobs.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Resume source queue after safe movement.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Move job IDs from node-a to a named destination. Requires pause, fresh worker loads, load below 90, and compatible GPU affinity.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "destination": {
+                  "enum": [
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                },
+                "ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "ids",
+                "destination"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one job by ID.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "<think>\n\n</think>\n\n",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"worker\": \"node-a\"}",
+                    "name": "get_queue"
+                  },
+                  "id": "v07aAp4GivTIcIK2xXey2UrPV7bXjivB",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789916146,
+        "id": "chatcmpl-ut1vNhzc2sC7Rzgr78gT8XlfTXIbFdxz",
+        "model": "models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 59,
+          "predicted_ms": 317.102,
+          "predicted_n": 21,
+          "predicted_per_second": 63.07118845040398,
+          "predicted_per_token_ms": 15.855099999999998,
+          "prompt_ms": 1024.293,
+          "prompt_n": 657,
+          "prompt_per_second": 641.4180317545859,
+          "prompt_per_token_ms": 1.5590456621004565
+        },
+        "usage": {
+          "completion_tokens": 21,
+          "prompt_tokens": 716,
+          "prompt_tokens_details": {
+            "cached_tokens": 59
+          },
+          "total_tokens": 737
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"<think>\\n\\n</think>\\n\\n\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"get_queue\",\"arguments\":\"{\\\"worker\\\": \\\"node-a\\\"}\"},\"id\":\"v07aAp4GivTIcIK2xXey2UrPV7bXjivB\"}]}}],\"created\":1789916146,\"model\":\"models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":21,\"prompt_tokens\":716,\"total_tokens\":737,\"prompt_tokens_details\":{\"cached_tokens\":59}},\"id\":\"chatcmpl-ut1vNhzc2sC7Rzgr78gT8XlfTXIbFdxz\",\"timings\":{\"cache_n\":59,\"prompt_n\":657,\"prompt_ms\":1024.293,\"prompt_per_token_ms\":1.5590456621004565,\"prompt_per_second\":641.4180317545859,\"predicted_n\":21,\"predicted_ms\":317.102,\"predicted_per_token_ms\":15.855099999999998,\"predicted_per_second\":63.07118845040398}}",
+      "status": 200
+    },
+    "turn": 1
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"worker\": \"node-a\"}",
+                "name": "get_queue"
+              },
+              "id": "v07aAp4GivTIcIK2xXey2UrPV7bXjivB",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "v07aAp4GivTIcIK2xXey2UrPV7bXjivB"
+        }
+      ],
+      "model": "Qwen3-4B",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Return current worker loads and GPU capability. Refresh after get_queue before moving jobs.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one worker queue. First inspection changes worker loads; inspect workers again afterward.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "worker": {
+                  "enum": [
+                    "node-a",
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Pause source queue before moving jobs.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Resume source queue after safe movement.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Move job IDs from node-a to a named destination. Requires pause, fresh worker loads, load below 90, and compatible GPU affinity.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "destination": {
+                  "enum": [
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                },
+                "ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "ids",
+                "destination"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one job by ID.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "<think>\n\n</think>\n\n",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "get_workers"
+                  },
+                  "id": "lhvQI1KejUea7N3xrSqU8cqtzHUa8YHx",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789916147,
+        "id": "chatcmpl-N9a8OnuHE9k0FkiNwQhhltI4DyHhWxku",
+        "model": "models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 712,
+          "predicted_ms": 237.433,
+          "predicted_n": 16,
+          "predicted_per_second": 63.1757169390944,
+          "predicted_per_token_ms": 15.828866666666666,
+          "prompt_ms": 128.929,
+          "prompt_n": 62,
+          "prompt_per_second": 480.884828083674,
+          "prompt_per_token_ms": 2.0795
+        },
+        "usage": {
+          "completion_tokens": 16,
+          "prompt_tokens": 774,
+          "prompt_tokens_details": {
+            "cached_tokens": 712
+          },
+          "total_tokens": 790
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"<think>\\n\\n</think>\\n\\n\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"get_workers\",\"arguments\":\"{}\"},\"id\":\"lhvQI1KejUea7N3xrSqU8cqtzHUa8YHx\"}]}}],\"created\":1789916147,\"model\":\"models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":16,\"prompt_tokens\":774,\"total_tokens\":790,\"prompt_tokens_details\":{\"cached_tokens\":712}},\"id\":\"chatcmpl-N9a8OnuHE9k0FkiNwQhhltI4DyHhWxku\",\"timings\":{\"cache_n\":712,\"prompt_n\":62,\"prompt_ms\":128.929,\"prompt_per_token_ms\":2.0795,\"prompt_per_second\":480.884828083674,\"predicted_n\":16,\"predicted_ms\":237.433,\"predicted_per_token_ms\":15.828866666666666,\"predicted_per_second\":63.1757169390944}}",
+      "status": 200
+    },
+    "turn": 2
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"worker\": \"node-a\"}",
+                "name": "get_queue"
+              },
+              "id": "v07aAp4GivTIcIK2xXey2UrPV7bXjivB",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "v07aAp4GivTIcIK2xXey2UrPV7bXjivB"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "lhvQI1KejUea7N3xrSqU8cqtzHUa8YHx",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "lhvQI1KejUea7N3xrSqU8cqtzHUa8YHx"
+        }
+      ],
+      "model": "Qwen3-4B",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Return current worker loads and GPU capability. Refresh after get_queue before moving jobs.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one worker queue. First inspection changes worker loads; inspect workers again afterward.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "worker": {
+                  "enum": [
+                    "node-a",
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Pause source queue before moving jobs.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Resume source queue after safe movement.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Move job IDs from node-a to a named destination. Requires pause, fresh worker loads, load below 90, and compatible GPU affinity.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "destination": {
+                  "enum": [
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                },
+                "ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "ids",
+                "destination"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one job by ID.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "<think>\n\n</think>\n\n",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "pause_queue"
+                  },
+                  "id": "CunrAJKALO4oO2UWM592mbCDyqZ55OFZ",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789916147,
+        "id": "chatcmpl-LzMIp8ovX5XRMu851BRe6dqMWoj8kCAm",
+        "model": "models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 770,
+          "predicted_ms": 242.481,
+          "predicted_n": 16,
+          "predicted_per_second": 61.86051690647927,
+          "predicted_per_token_ms": 16.165399999999998,
+          "prompt_ms": 167.302,
+          "prompt_n": 69,
+          "prompt_per_second": 412.4278251306022,
+          "prompt_per_token_ms": 2.4246666666666665
+        },
+        "usage": {
+          "completion_tokens": 16,
+          "prompt_tokens": 839,
+          "prompt_tokens_details": {
+            "cached_tokens": 770
+          },
+          "total_tokens": 855
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"<think>\\n\\n</think>\\n\\n\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"pause_queue\",\"arguments\":\"{}\"},\"id\":\"CunrAJKALO4oO2UWM592mbCDyqZ55OFZ\"}]}}],\"created\":1789916147,\"model\":\"models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":16,\"prompt_tokens\":839,\"total_tokens\":855,\"prompt_tokens_details\":{\"cached_tokens\":770}},\"id\":\"chatcmpl-LzMIp8ovX5XRMu851BRe6dqMWoj8kCAm\",\"timings\":{\"cache_n\":770,\"prompt_n\":69,\"prompt_ms\":167.302,\"prompt_per_token_ms\":2.4246666666666665,\"prompt_per_second\":412.4278251306022,\"predicted_n\":16,\"predicted_ms\":242.481,\"predicted_per_token_ms\":16.165399999999998,\"predicted_per_second\":61.86051690647927}}",
+      "status": 200
+    },
+    "turn": 3
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"worker\": \"node-a\"}",
+                "name": "get_queue"
+              },
+              "id": "v07aAp4GivTIcIK2xXey2UrPV7bXjivB",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "v07aAp4GivTIcIK2xXey2UrPV7bXjivB"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "lhvQI1KejUea7N3xrSqU8cqtzHUa8YHx",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "lhvQI1KejUea7N3xrSqU8cqtzHUa8YHx"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "CunrAJKALO4oO2UWM592mbCDyqZ55OFZ",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "CunrAJKALO4oO2UWM592mbCDyqZ55OFZ"
+        }
+      ],
+      "model": "Qwen3-4B",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Return current worker loads and GPU capability. Refresh after get_queue before moving jobs.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one worker queue. First inspection changes worker loads; inspect workers again afterward.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "worker": {
+                  "enum": [
+                    "node-a",
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Pause source queue before moving jobs.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Resume source queue after safe movement.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Move job IDs from node-a to a named destination. Requires pause, fresh worker loads, load below 90, and compatible GPU affinity.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "destination": {
+                  "enum": [
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                },
+                "ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "ids",
+                "destination"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one job by ID.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "<think>\n\n</think>\n\n",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"worker\": \"node-a\"}",
+                    "name": "get_queue"
+                  },
+                  "id": "3hUKbtLinvYNuwDrFdw2mEbVdnoMydaO",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789916148,
+        "id": "chatcmpl-MWgYIIjGAEljoAze8ZmrsC4cRcsIjlCW",
+        "model": "models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 835,
+          "predicted_ms": 320.337,
+          "predicted_n": 21,
+          "predicted_per_second": 62.43424893159392,
+          "predicted_per_token_ms": 16.016849999999998,
+          "prompt_ms": 122.005,
+          "prompt_n": 37,
+          "prompt_per_second": 303.2662595795254,
+          "prompt_per_token_ms": 3.2974324324324322
+        },
+        "usage": {
+          "completion_tokens": 21,
+          "prompt_tokens": 872,
+          "prompt_tokens_details": {
+            "cached_tokens": 835
+          },
+          "total_tokens": 893
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"<think>\\n\\n</think>\\n\\n\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"get_queue\",\"arguments\":\"{\\\"worker\\\": \\\"node-a\\\"}\"},\"id\":\"3hUKbtLinvYNuwDrFdw2mEbVdnoMydaO\"}]}}],\"created\":1789916148,\"model\":\"models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":21,\"prompt_tokens\":872,\"total_tokens\":893,\"prompt_tokens_details\":{\"cached_tokens\":835}},\"id\":\"chatcmpl-MWgYIIjGAEljoAze8ZmrsC4cRcsIjlCW\",\"timings\":{\"cache_n\":835,\"prompt_n\":37,\"prompt_ms\":122.005,\"prompt_per_token_ms\":3.2974324324324322,\"prompt_per_second\":303.2662595795254,\"predicted_n\":21,\"predicted_ms\":320.337,\"predicted_per_token_ms\":16.016849999999998,\"predicted_per_second\":62.43424893159392}}",
+      "status": 200
+    },
+    "turn": 4
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"worker\": \"node-a\"}",
+                "name": "get_queue"
+              },
+              "id": "v07aAp4GivTIcIK2xXey2UrPV7bXjivB",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "v07aAp4GivTIcIK2xXey2UrPV7bXjivB"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "lhvQI1KejUea7N3xrSqU8cqtzHUa8YHx",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "lhvQI1KejUea7N3xrSqU8cqtzHUa8YHx"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "CunrAJKALO4oO2UWM592mbCDyqZ55OFZ",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "CunrAJKALO4oO2UWM592mbCDyqZ55OFZ"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"worker\": \"node-a\"}",
+                "name": "get_queue"
+              },
+              "id": "3hUKbtLinvYNuwDrFdw2mEbVdnoMydaO",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "3hUKbtLinvYNuwDrFdw2mEbVdnoMydaO"
+        }
+      ],
+      "model": "Qwen3-4B",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Return current worker loads and GPU capability. Refresh after get_queue before moving jobs.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one worker queue. First inspection changes worker loads; inspect workers again afterward.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "worker": {
+                  "enum": [
+                    "node-a",
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Pause source queue before moving jobs.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Resume source queue after safe movement.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Move job IDs from node-a to a named destination. Requires pause, fresh worker loads, load below 90, and compatible GPU affinity.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "destination": {
+                  "enum": [
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                },
+                "ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "ids",
+                "destination"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one job by ID.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "<think>\n\n</think>\n\n",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"ids\": [\"j-gpu\", \"j-cpu\"], \"destination\": \"node-b\"}",
+                    "name": "move_jobs"
+                  },
+                  "id": "HaAx3NWTIrqc3JXI3I4M7RhZGKlReL0s",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789916148,
+        "id": "chatcmpl-hc10cf6bJRa0Xv2coQONUQCn4780HUmU",
+        "model": "models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 868,
+          "predicted_ms": 526.54,
+          "predicted_n": 34,
+          "predicted_per_second": 62.67330117370001,
+          "predicted_per_token_ms": 15.955757575757575,
+          "prompt_ms": 129.308,
+          "prompt_n": 62,
+          "prompt_per_second": 479.4753611532156,
+          "prompt_per_token_ms": 2.0856129032258064
+        },
+        "usage": {
+          "completion_tokens": 34,
+          "prompt_tokens": 930,
+          "prompt_tokens_details": {
+            "cached_tokens": 868
+          },
+          "total_tokens": 964
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"<think>\\n\\n</think>\\n\\n\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"move_jobs\",\"arguments\":\"{\\\"ids\\\": [\\\"j-gpu\\\", \\\"j-cpu\\\"], \\\"destination\\\": \\\"node-b\\\"}\"},\"id\":\"HaAx3NWTIrqc3JXI3I4M7RhZGKlReL0s\"}]}}],\"created\":1789916148,\"model\":\"models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":34,\"prompt_tokens\":930,\"total_tokens\":964,\"prompt_tokens_details\":{\"cached_tokens\":868}},\"id\":\"chatcmpl-hc10cf6bJRa0Xv2coQONUQCn4780HUmU\",\"timings\":{\"cache_n\":868,\"prompt_n\":62,\"prompt_ms\":129.308,\"prompt_per_token_ms\":2.0856129032258064,\"prompt_per_second\":479.4753611532156,\"predicted_n\":34,\"predicted_ms\":526.54,\"predicted_per_token_ms\":15.955757575757575,\"predicted_per_second\":62.67330117370001}}",
+      "status": 200
+    },
+    "turn": 5
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"worker\": \"node-a\"}",
+                "name": "get_queue"
+              },
+              "id": "v07aAp4GivTIcIK2xXey2UrPV7bXjivB",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "v07aAp4GivTIcIK2xXey2UrPV7bXjivB"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "lhvQI1KejUea7N3xrSqU8cqtzHUa8YHx",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "lhvQI1KejUea7N3xrSqU8cqtzHUa8YHx"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "CunrAJKALO4oO2UWM592mbCDyqZ55OFZ",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "CunrAJKALO4oO2UWM592mbCDyqZ55OFZ"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"worker\": \"node-a\"}",
+                "name": "get_queue"
+              },
+              "id": "3hUKbtLinvYNuwDrFdw2mEbVdnoMydaO",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "3hUKbtLinvYNuwDrFdw2mEbVdnoMydaO"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"ids\": [\"j-gpu\", \"j-cpu\"], \"destination\": \"node-b\"}",
+                "name": "move_jobs"
+              },
+              "id": "HaAx3NWTIrqc3JXI3I4M7RhZGKlReL0s",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"error\":\"destination load is unsuitable\"}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "HaAx3NWTIrqc3JXI3I4M7RhZGKlReL0s"
+        }
+      ],
+      "model": "Qwen3-4B",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Return current worker loads and GPU capability. Refresh after get_queue before moving jobs.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one worker queue. First inspection changes worker loads; inspect workers again afterward.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "worker": {
+                  "enum": [
+                    "node-a",
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Pause source queue before moving jobs.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Resume source queue after safe movement.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Move job IDs from node-a to a named destination. Requires pause, fresh worker loads, load below 90, and compatible GPU affinity.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "destination": {
+                  "enum": [
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                },
+                "ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "ids",
+                "destination"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one job by ID.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "<think>\n\n</think>\n\n",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{}",
+                    "name": "get_workers"
+                  },
+                  "id": "NKfeV16ceAIw1XHHFOkQ1sqWCcdx0sq8",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789916149,
+        "id": "chatcmpl-2Qm3DW2MLFM41r7CVKTvA3VWUENzub8q",
+        "model": "models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 926,
+          "predicted_ms": 266.575,
+          "predicted_n": 16,
+          "predicted_per_second": 56.269342586514114,
+          "predicted_per_token_ms": 17.771666666666665,
+          "prompt_ms": 129.223,
+          "prompt_n": 59,
+          "prompt_per_second": 456.5750679058681,
+          "prompt_per_token_ms": 2.190220338983051
+        },
+        "usage": {
+          "completion_tokens": 16,
+          "prompt_tokens": 985,
+          "prompt_tokens_details": {
+            "cached_tokens": 926
+          },
+          "total_tokens": 1001
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"<think>\\n\\n</think>\\n\\n\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"get_workers\",\"arguments\":\"{}\"},\"id\":\"NKfeV16ceAIw1XHHFOkQ1sqWCcdx0sq8\"}]}}],\"created\":1789916149,\"model\":\"models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":16,\"prompt_tokens\":985,\"total_tokens\":1001,\"prompt_tokens_details\":{\"cached_tokens\":926}},\"id\":\"chatcmpl-2Qm3DW2MLFM41r7CVKTvA3VWUENzub8q\",\"timings\":{\"cache_n\":926,\"prompt_n\":59,\"prompt_ms\":129.223,\"prompt_per_token_ms\":2.190220338983051,\"prompt_per_second\":456.5750679058681,\"predicted_n\":16,\"predicted_ms\":266.575,\"predicted_per_token_ms\":17.771666666666665,\"predicted_per_second\":56.269342586514114}}",
+      "status": 200
+    },
+    "turn": 6
+  },
+  {
+    "request": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "max_tokens": 768,
+      "messages": [
+        {
+          "content": "[omitted: system/developer message]",
+          "role": "system"
+        },
+        {
+          "content": "You are operating a deterministic tool-use benchmark. Use the provided structured tools directly. Investigate before mutation, preserve state, obey constraints, and stop only when the objective is verified or the evidence requires a safe stop. Do not explain tool calls in ordinary text. Public task data follows:\n{\"available_tools\": [\"get_workers\", \"get_queue\", \"pause_queue\", \"resume_queue\", \"move_jobs\", \"get_job\"], \"initial_state\": {\"queues\": {\"node-a\": [{\"affinity\": \"gpu\", \"id\": \"j-gpu\"}, {\"affinity\": \"cpu\", \"id\": \"j-cpu\"}]}, \"workers\": {\"node-a\": {\"gpu\": false, \"load\": 96}, \"node-b\": {\"gpu\": true, \"load\": 31}, \"node-c\": {\"gpu\": false, \"load\": 42}}}, \"objective\": \"Move queued workload away from overloaded node-a to available workers while respecting GPU affinity.\"}",
+          "role": "user"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"worker\": \"node-a\"}",
+                "name": "get_queue"
+              },
+              "id": "v07aAp4GivTIcIK2xXey2UrPV7bXjivB",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "v07aAp4GivTIcIK2xXey2UrPV7bXjivB"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "lhvQI1KejUea7N3xrSqU8cqtzHUa8YHx",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "lhvQI1KejUea7N3xrSqU8cqtzHUa8YHx"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "pause_queue"
+              },
+              "id": "CunrAJKALO4oO2UWM592mbCDyqZ55OFZ",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"paused\":true}",
+          "name": "pause_queue",
+          "role": "tool",
+          "tool_call_id": "CunrAJKALO4oO2UWM592mbCDyqZ55OFZ"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"worker\": \"node-a\"}",
+                "name": "get_queue"
+              },
+              "id": "3hUKbtLinvYNuwDrFdw2mEbVdnoMydaO",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "[{\"affinity\":\"gpu\",\"id\":\"j-gpu\"},{\"affinity\":\"cpu\",\"id\":\"j-cpu\"}]",
+          "name": "get_queue",
+          "role": "tool",
+          "tool_call_id": "3hUKbtLinvYNuwDrFdw2mEbVdnoMydaO"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{\"ids\": [\"j-gpu\", \"j-cpu\"], \"destination\": \"node-b\"}",
+                "name": "move_jobs"
+              },
+              "id": "HaAx3NWTIrqc3JXI3I4M7RhZGKlReL0s",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"error\":\"destination load is unsuitable\"}",
+          "name": "move_jobs",
+          "role": "tool",
+          "tool_call_id": "HaAx3NWTIrqc3JXI3I4M7RhZGKlReL0s"
+        },
+        {
+          "content": "<think>\n\n</think>\n\n",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "function": {
+                "arguments": "{}",
+                "name": "get_workers"
+              },
+              "id": "NKfeV16ceAIw1XHHFOkQ1sqWCcdx0sq8",
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "{\"node-a\":{\"gpu\":false,\"load\":96},\"node-b\":{\"gpu\":true,\"load\":91},\"node-c\":{\"gpu\":false,\"load\":39}}",
+          "name": "get_workers",
+          "role": "tool",
+          "tool_call_id": "NKfeV16ceAIw1XHHFOkQ1sqWCcdx0sq8"
+        }
+      ],
+      "model": "Qwen3-4B",
+      "reasoning_effort": "none",
+      "reasoning_format": "none",
+      "seed": 0,
+      "stream": false,
+      "temperature": 0,
+      "tool_choice": "auto",
+      "tools": [
+        {
+          "function": {
+            "description": "Return current worker loads and GPU capability. Refresh after get_queue before moving jobs.",
+            "name": "get_workers",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one worker queue. First inspection changes worker loads; inspect workers again afterward.",
+            "name": "get_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "worker": {
+                  "enum": [
+                    "node-a",
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Pause source queue before moving jobs.",
+            "name": "pause_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Resume source queue after safe movement.",
+            "name": "resume_queue",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {},
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Move job IDs from node-a to a named destination. Requires pause, fresh worker loads, load below 90, and compatible GPU affinity.",
+            "name": "move_jobs",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "destination": {
+                  "enum": [
+                    "node-b",
+                    "node-c"
+                  ],
+                  "type": "string"
+                },
+                "ids": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "ids",
+                "destination"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        },
+        {
+          "function": {
+            "description": "Inspect one job by ID.",
+            "name": "get_job",
+            "parameters": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id"
+              ],
+              "type": "object"
+            }
+          },
+          "type": "function"
+        }
+      ]
+    },
+    "response": {
+      "json": {
+        "choices": [
+          {
+            "finish_reason": "tool_calls",
+            "index": 0,
+            "message": {
+              "content": "<think>\n\n</think>\n\n",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"ids\": [\"j-gpu\", \"j-cpu\"], \"destination\": \"node-c\"}",
+                    "name": "move_jobs"
+                  },
+                  "id": "NFbQbQSuHZuBK3De0iQyslxvadbyynJJ",
+                  "type": "function"
+                }
+              ]
+            }
+          }
+        ],
+        "created": 1789916150,
+        "id": "chatcmpl-Dqwv2i5ckmPxdkxcdCZsGznoZOm9t7oZ",
+        "model": "models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf",
+        "object": "chat.completion",
+        "system_fingerprint": "b11028-972d2313b",
+        "timings": {
+          "cache_n": 981,
+          "predicted_ms": 531.14,
+          "predicted_n": 34,
+          "predicted_per_second": 62.13051172948752,
+          "predicted_per_token_ms": 16.095151515151514,
+          "prompt_ms": 180.876,
+          "prompt_n": 69,
+          "prompt_per_second": 381.4768128441584,
+          "prompt_per_token_ms": 2.621391304347826
+        },
+        "usage": {
+          "completion_tokens": 34,
+          "prompt_tokens": 1050,
+          "prompt_tokens_details": {
+            "cached_tokens": 981
+          },
+          "total_tokens": 1084
+        }
+      },
+      "raw": "{\"choices\":[{\"finish_reason\":\"tool_calls\",\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"<think>\\n\\n</think>\\n\\n\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"move_jobs\",\"arguments\":\"{\\\"ids\\\": [\\\"j-gpu\\\", \\\"j-cpu\\\"], \\\"destination\\\": \\\"node-c\\\"}\"},\"id\":\"NFbQbQSuHZuBK3De0iQyslxvadbyynJJ\"}]}}],\"created\":1789916150,\"model\":\"models/mac-bridge/Qwen_Qwen3-4B-Q4_K_M.gguf\",\"system_fingerprint\":\"b11028-972d2313b\",\"object\":\"chat.completion\",\"usage\":{\"completion_tokens\":34,\"prompt_tokens\":1050,\"total_tokens\":1084,\"prompt_tokens_details\":{\"cached_tokens\":981}},\"id\":\"chatcmpl-Dqwv2i5ckmPxdkxcdCZsGznoZOm9t7oZ\",\"timings\":{\"cache_n\":981,\"prompt_n\":69,\"prompt_ms\":180.876,\"prompt_per_token_ms\":2.621391304347826,\"prompt_per_second\":381.4768128441584,\"predicted_n\":34,\"predicted_ms\":531.14,\"predicted_per_token_ms\":16.095151515151514,\"predicted_per_second\":62.13051172948752}}",
+      "status": 200
+    },
+    "turn": 7
+  }
+]
